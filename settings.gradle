@@ -1,0 +1,2 @@
+rootProject.name='muhoItem1'
+include ':app'

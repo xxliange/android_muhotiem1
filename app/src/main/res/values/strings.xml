@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">muhoItem1</string>
+    <string name="text_home">首页</string>
+    <string name="text_hot">热点</string>
+    <string name="text_mine">我的</string>
+    <string name="app_title">幕后篮球</string>
+    <string name="text_home_title">首页</string>
+    <string name="text_hotlist_title">幕后热点</string>
+    <string name="text_mine_title">我的</string>
+    <string name="text_network_error_tips">网络错误,请点击重试!</string>
+    <string name="text_hot_list_item_views">%1d次观看</string>
+</resources>
