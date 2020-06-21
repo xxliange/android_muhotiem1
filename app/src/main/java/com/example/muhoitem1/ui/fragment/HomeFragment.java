@@ -1,17 +1,23 @@
 package com.example.muhoitem1.ui.fragment;
 
+import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.presenter.Impl.HomePresenterImpl;
+import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
 import com.example.muhoitem1.ui.adapter.LooperPagerAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
@@ -29,9 +35,12 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     //获取banner指示点控件
     @BindView(R.id.looper_point_container)
     public LinearLayout looperPointContainer;
+    @BindView(R.id.homeStarLsit)
+    public RecyclerView mHomeStarList;
 
     private IHomePresenter mHomePresenter;
     private LooperPagerAdapter mLooperPagerAdapter;
+    private HomeStarListAdapter mHomeStarListAdapter;
 
     @Override
     protected int getRootViewResId() {
@@ -46,6 +55,15 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         mLooperPagerAdapter = new LooperPagerAdapter();
         //设置适配器
         looperPager.setAdapter(mLooperPagerAdapter);
+
+        //创建球星列表适配器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mHomeStarList.setLayoutManager(linearLayoutManager);
+        mHomeStarListAdapter = new HomeStarListAdapter();
+        //设置球星列表适配器
+        mHomeStarList.setAdapter(mHomeStarListAdapter);
+
 
     }
 
@@ -65,6 +83,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     protected void loadData() {
         //加载数据
         mHomePresenter.getBannerData();
+        mHomePresenter.getStarListData();
     }
 
     @Override
@@ -82,7 +101,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         for (int i = 0; i < bannerData.size(); i++) {
             View point = new View(getContext());
             int size = SizeUtils.dip2px(getContext(), 8);
-            LogUtils.d(this, "size --> " + size + " -- " + i);
+//            LogUtils.d(this, "size --> " + size + " -- " + i);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(size, size);
             layoutParams.leftMargin = SizeUtils.dip2px(getContext(), 5);
             layoutParams.rightMargin = SizeUtils.dip2px(getContext(), 5);
@@ -95,6 +114,12 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
 
             looperPointContainer.addView(point);
         }
+    }
+
+    @Override
+    public void onStarListDataLoad(List<StarListData.DataBean> starListData) {
+//        LogUtils.d(this, "starListData --> " + starListData);
+        mHomeStarListAdapter.setData(starListData);
     }
 
     @Override

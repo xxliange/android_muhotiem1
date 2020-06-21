@@ -1,7 +1,10 @@
 package com.example.muhoitem1.presenter.Impl;
 
+import android.util.Log;
+
 import com.example.muhoitem1.model.Api;
 import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.RetrofitManaget;
@@ -18,6 +21,9 @@ import retrofit2.Retrofit;
 public class HomePresenterImpl implements IHomePresenter {
     private IHomeCallback mCallback = null;
 
+    /**
+     * 获取banner图数据
+     */
     @Override
     public void getBannerData() {
         if (mCallback != null) {
@@ -42,7 +48,7 @@ public class HomePresenterImpl implements IHomePresenter {
                         } else {
                             //LogUtils.d(HomePresenterImpl.this, banner.toString());
                             //LogUtils.d(HomePresenterImpl.this, data.size() + "");
-                            mCallback.onBannerDataLoad((List<BannerData.DataBeanX>) banner);
+                            mCallback.onBannerDataLoad(banner);
                         }
                     }
                 } else {
@@ -62,6 +68,33 @@ public class HomePresenterImpl implements IHomePresenter {
                 if (mCallback!=null) {
                     mCallback.onNetworkError();
                 }
+            }
+        });
+
+    }
+
+    /**
+     * 获取球星列表数据
+     */
+    @Override
+    public void getStarListData() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        Api api = retrofit.create(Api.class);
+        Call<StarListData> task = api.getStarListData();
+        task.enqueue(new Callback<StarListData>() {
+            @Override
+            public void onResponse(Call<StarListData> call, Response<StarListData> response) {
+                int code = response.code();
+                if (code== HttpURLConnection.HTTP_OK) {
+//                    LogUtils.d(HomePresenterImpl.this,"StarListData --> " + response.body().getData().toString());
+                    List<StarListData.DataBean> data = response.body().getData();
+                    mCallback.onStarListDataLoad(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StarListData> call, Throwable t) {
+
             }
         });
 

@@ -13,5 +13,10 @@ public interface IHomePresenter extends IBaseViewPresenter<IHomeCallback> {
      */
     void getBannerData();
 
+    /**
+     * 获取球星列表数据
+     */
+    void getStarListData();
+
 
 }

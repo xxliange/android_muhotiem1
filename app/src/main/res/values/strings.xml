@@ -9,4 +9,6 @@
     <string name="text_mine_title">我的</string>
     <string name="text_network_error_tips">网络错误,请点击重试!</string>
     <string name="text_hot_list_item_views">%1d次观看</string>
+    <string name="text_star_list">球星专区</string>
+    <string name="text_go_moreStar">更多</string>
 </resources>
