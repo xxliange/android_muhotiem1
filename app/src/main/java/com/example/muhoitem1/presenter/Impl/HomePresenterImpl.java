@@ -2,7 +2,9 @@ package com.example.muhoitem1.presenter.Impl;
 
 import com.example.muhoitem1.model.Api;
 import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.HomeGraduateData;
 import com.example.muhoitem1.model.domain.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeTeachData;
 import com.example.muhoitem1.model.domain.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
@@ -125,6 +127,50 @@ public class HomePresenterImpl implements IHomePresenter {
             }
         });
 
+    }
+
+    @Override
+    public void getHomeTeachData() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        Api api = retrofit.create(Api.class);
+        Call<HomeTeachData> task = api.getHomeTeachData();
+        task.enqueue(new Callback<HomeTeachData>() {
+            @Override
+            public void onResponse(Call<HomeTeachData> call, Response<HomeTeachData> response) {
+                int code = response.code();
+                if (code == HttpURLConnection.HTTP_OK) {
+                    List<HomeTeachData.DataBean> data = response.body().getData();
+                    mCallback.onHomeTeachDataLoad(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HomeTeachData> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getHomeGraduateData() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        Api api = retrofit.create(Api.class);
+        Call<HomeGraduateData> task = api.getHomeGraduateData(2,1);
+        task.enqueue(new Callback<HomeGraduateData>() {
+            @Override
+            public void onResponse(Call<HomeGraduateData> call, Response<HomeGraduateData> response) {
+                int code = response.code();
+                if (code == HttpURLConnection.HTTP_OK) {
+                    List<HomeGraduateData.DataBean> data = response.body().getData();
+                    mCallback.onHomeGraduateLoad(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HomeGraduateData> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

@@ -44,7 +44,8 @@
                 <ImageView
                     android:id="@+id/item_twoLine_thumb"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="120dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY" />
             </androidx.cardview.widget.CardView>

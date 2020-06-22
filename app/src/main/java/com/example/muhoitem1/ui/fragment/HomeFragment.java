@@ -15,12 +15,16 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.HomeGraduateData;
 import com.example.muhoitem1.model.domain.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeTeachData;
 import com.example.muhoitem1.model.domain.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.presenter.Impl.HomePresenterImpl;
+import com.example.muhoitem1.ui.adapter.HomeGraduateAdapter;
 import com.example.muhoitem1.ui.adapter.HomePayAlbumListAdapter;
 import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
+import com.example.muhoitem1.ui.adapter.HomeTeachAdapter;
 import com.example.muhoitem1.ui.adapter.LooperPagerAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
@@ -45,11 +49,17 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     public RefreshLayout refreshLayout;
     @BindView(R.id.home_payAlbum_view)
     public RecyclerView mHomePayAlbumView;
+    @BindView(R.id.home_teach_view)
+    public RecyclerView mHomeTeachView;
+    @BindView(R.id.home_graduate_view)
+    public RecyclerView mHomeGraduateView;
 
     private IHomePresenter mHomePresenter;
     private LooperPagerAdapter mLooperPagerAdapter;
     private HomeStarListAdapter mHomeStarListAdapter;
     private HomePayAlbumListAdapter mHomePayAlbumListAdapter;
+    private HomeTeachAdapter mHomeTeachAdapter;
+    private HomeGraduateAdapter mHomeGraduateAdapter;
     @Override
     protected int getRootViewResId() {
         return R.layout.fragment_home;
@@ -60,6 +70,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         setBannerAdapter();
         setStarListAdapter();
         setHomeAlbumListAdapter();
+        setHomeTeachAdapter();
+        setHomeGraduateAdapter();
     }
 
     /**
@@ -94,7 +106,26 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         mHomePayAlbumView.setLayoutManager(gridLayoutManager);
         mHomePayAlbumListAdapter = new HomePayAlbumListAdapter();
         mHomePayAlbumView.setAdapter(mHomePayAlbumListAdapter);
+    }
 
+    /**
+     * 设置幕后教学列表适配器
+     */
+        private void setHomeTeachAdapter() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
+        mHomeTeachView.setLayoutManager(gridLayoutManager);
+        mHomeTeachAdapter = new HomeTeachAdapter();
+        mHomeTeachView.setAdapter(mHomeTeachAdapter);
+    }
+
+    /**
+     * 设置研究所列表适配器
+     */
+    private void setHomeGraduateAdapter() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
+        mHomeGraduateView.setLayoutManager(gridLayoutManager);
+        mHomeGraduateAdapter = new HomeGraduateAdapter();
+        mHomeGraduateView.setAdapter(mHomeGraduateAdapter);
     }
 
     @Override
@@ -124,6 +155,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         mHomePresenter.getBannerData();
         mHomePresenter.getStarListData();
         mHomePresenter.getPayAlbumData();
+        mHomePresenter.getHomeTeachData();
+        mHomePresenter.getHomeGraduateData();
     }
 
     @Override
@@ -160,6 +193,16 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     public void onHomePayAlbumDataLoad(List<HomePayAlbumListData.DataBean> payAlbumListData) {
 //        LogUtils.d(this,"payAlbumData --> " + payAlbumListData.size());
         mHomePayAlbumListAdapter.setData(payAlbumListData);
+    }
+
+    @Override
+    public void onHomeTeachDataLoad(List<HomeTeachData.DataBean> teachData) {
+        mHomeTeachAdapter.setData(teachData);
+    }
+
+    @Override
+    public void onHomeGraduateLoad(List<HomeGraduateData.DataBean> graduateData) {
+        mHomeGraduateAdapter.setData(graduateData);
     }
 
     @Override

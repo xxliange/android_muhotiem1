@@ -1,5 +1,6 @@
 package com.example.muhoitem1.ui.adapter;
 
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.muhoitem1.R;
-import com.example.muhoitem1.model.domain.BannerData;
-import com.example.muhoitem1.model.domain.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeTeachData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +20,19 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomePayAlbumListAdapter extends RecyclerView.Adapter<HomePayAlbumListAdapter.InnerHolder> {
-    private List<HomePayAlbumListData.DataBean> mData = new ArrayList<>();
+public class HomeTeachAdapter extends RecyclerView.Adapter<HomeTeachAdapter.InnerHolder> {
+    private List<HomeTeachData.DataBean> mData = new ArrayList<>();
 
     @NonNull
     @Override
     public InnerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_two_lines, parent, false);
         return new InnerHolder(itemView);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull InnerHolder holder, int position) {
-        HomePayAlbumListData.DataBean dataBean = mData.get(position);
+        HomeTeachData.DataBean dataBean = mData.get(position);
         holder.setData(dataBean);
     }
 
@@ -41,16 +40,16 @@ public class HomePayAlbumListAdapter extends RecyclerView.Adapter<HomePayAlbumLi
     public int getItemCount() {
         if (mData == null) {
             return 0;
-        } else if (mData.size() >= 4) {
-            return 4;
+        } else if (mData.size() >= 3) {
+            return 3;
         } else {
             return mData.size();
         }
     }
 
-    public void setData(List<HomePayAlbumListData.DataBean> payAlbumListData) {
+    public void setData(List<HomeTeachData.DataBean> teachData) {
         mData.clear();
-        mData.addAll(payAlbumListData);
+        mData.addAll(teachData);
         notifyDataSetChanged();
     }
 
@@ -61,10 +60,10 @@ public class HomePayAlbumListAdapter extends RecyclerView.Adapter<HomePayAlbumLi
         public ImageView thumb;
         public InnerHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this,itemView);
         }
 
-        public void setData(HomePayAlbumListData.DataBean dataBean) {
+        public void setData(HomeTeachData.DataBean dataBean) {
             title.setText(dataBean.getName());
             Glide.with(itemView.getContext()).load(dataBean.getThumb()).into(thumb);
         }
