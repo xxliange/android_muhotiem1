@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
-import com.example.muhoitem1.model.domain.StarListData;
+import com.example.muhoitem1.model.domain.HomeData.StarListData;
 
 import java.util.ArrayList;
 import java.util.List;

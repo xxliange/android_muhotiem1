@@ -1,11 +1,13 @@
 package com.example.muhoitem1.view;
 
 import com.example.muhoitem1.base.IBaseCallback;
-import com.example.muhoitem1.model.domain.BannerData;
-import com.example.muhoitem1.model.domain.HomeGraduateData;
-import com.example.muhoitem1.model.domain.HomePayAlbumListData;
-import com.example.muhoitem1.model.domain.HomeTeachData;
-import com.example.muhoitem1.model.domain.StarListData;
+import com.example.muhoitem1.model.domain.HomeData.BannerData;
+import com.example.muhoitem1.model.domain.HomeData.HomeGraduateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeNewVideoData;
+import com.example.muhoitem1.model.domain.HomeData.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeData.HomePrivateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
+import com.example.muhoitem1.model.domain.HomeData.StarListData;
 
 import java.util.List;
 
@@ -39,4 +41,16 @@ public interface IHomeCallback extends IBaseCallback {
      * @param graduateData
      */
     void onHomeGraduateLoad(List<HomeGraduateData.DataBean> graduateData);
+
+    /**
+     * 获取首页最新视频列表
+     * @param newVideoData
+     */
+    void onHomeNewVideoDataLoad(List<HomeNewVideoData.DataBean> newVideoData);
+
+    /**
+     * 获取首页私人训练视频列表
+     * @param privateData
+     */
+    void onHomePrivateDataLoad(List<HomePrivateData.DataBean> privateData);
 }

@@ -1,4 +1,4 @@
-package com.example.muhoitem1.model.domain;
+package com.example.muhoitem1.model.domain.HomeData;
 
 import java.util.List;
 

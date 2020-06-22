@@ -1,6 +1,5 @@
 package com.example.muhoitem1.ui.adapter;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.muhoitem1.R;
-import com.example.muhoitem1.model.domain.HomeTeachData;
+import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
 
 import java.util.ArrayList;
 import java.util.List;

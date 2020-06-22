@@ -1,17 +1,14 @@
 package com.example.muhoitem1.ui.adapter;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.HomeData.BannerData;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.UrlUtils;
 

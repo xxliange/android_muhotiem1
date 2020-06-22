@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,19 +13,22 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
-import com.example.muhoitem1.model.domain.BannerData;
-import com.example.muhoitem1.model.domain.HomeGraduateData;
-import com.example.muhoitem1.model.domain.HomePayAlbumListData;
-import com.example.muhoitem1.model.domain.HomeTeachData;
-import com.example.muhoitem1.model.domain.StarListData;
+import com.example.muhoitem1.model.domain.HomeData.BannerData;
+import com.example.muhoitem1.model.domain.HomeData.HomeGraduateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeNewVideoData;
+import com.example.muhoitem1.model.domain.HomeData.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeData.HomePrivateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
+import com.example.muhoitem1.model.domain.HomeData.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.presenter.Impl.HomePresenterImpl;
 import com.example.muhoitem1.ui.adapter.HomeGraduateAdapter;
+import com.example.muhoitem1.ui.adapter.HomeNewVideoAdapter;
 import com.example.muhoitem1.ui.adapter.HomePayAlbumListAdapter;
+import com.example.muhoitem1.ui.adapter.HomePrivateAdapter;
 import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
 import com.example.muhoitem1.ui.adapter.HomeTeachAdapter;
 import com.example.muhoitem1.ui.adapter.LooperPagerAdapter;
-import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
 import com.example.muhoitem1.view.IHomeCallback;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -53,6 +55,10 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     public RecyclerView mHomeTeachView;
     @BindView(R.id.home_graduate_view)
     public RecyclerView mHomeGraduateView;
+    @BindView(R.id.home_newVideo_view)
+    public RecyclerView mHomeNewVideoView;
+    @BindView(R.id.home_private_view)
+    public RecyclerView mHomePrivateView;
 
     private IHomePresenter mHomePresenter;
     private LooperPagerAdapter mLooperPagerAdapter;
@@ -60,6 +66,9 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     private HomePayAlbumListAdapter mHomePayAlbumListAdapter;
     private HomeTeachAdapter mHomeTeachAdapter;
     private HomeGraduateAdapter mHomeGraduateAdapter;
+    private HomeNewVideoAdapter mHomeNewVideoAdapter;
+    private HomePrivateAdapter mHomePrivateAdapter;
+
     @Override
     protected int getRootViewResId() {
         return R.layout.fragment_home;
@@ -72,6 +81,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         setHomeAlbumListAdapter();
         setHomeTeachAdapter();
         setHomeGraduateAdapter();
+        setHomeNewVideoAdapter();
+        setHomePrivateAdapter();
     }
 
     /**
@@ -101,8 +112,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     /**
      * 设置精品专辑列表适配器
      */
-    public void setHomeAlbumListAdapter(){
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false);
+    public void setHomeAlbumListAdapter() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
         mHomePayAlbumView.setLayoutManager(gridLayoutManager);
         mHomePayAlbumListAdapter = new HomePayAlbumListAdapter();
         mHomePayAlbumView.setAdapter(mHomePayAlbumListAdapter);
@@ -111,8 +122,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     /**
      * 设置幕后教学列表适配器
      */
-        private void setHomeTeachAdapter() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
+    private void setHomeTeachAdapter() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
         mHomeTeachView.setLayoutManager(gridLayoutManager);
         mHomeTeachAdapter = new HomeTeachAdapter();
         mHomeTeachView.setAdapter(mHomeTeachAdapter);
@@ -122,10 +133,31 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
      * 设置研究所列表适配器
      */
     private void setHomeGraduateAdapter() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3,RecyclerView.VERTICAL,false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
         mHomeGraduateView.setLayoutManager(gridLayoutManager);
         mHomeGraduateAdapter = new HomeGraduateAdapter();
         mHomeGraduateView.setAdapter(mHomeGraduateAdapter);
+    }
+
+    /**
+     * 设置最新视频列表适配器
+     */
+    private void setHomeNewVideoAdapter() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
+        mHomeNewVideoView.setLayoutManager(gridLayoutManager);
+        mHomeNewVideoAdapter = new HomeNewVideoAdapter();
+        mHomeNewVideoView.setAdapter(mHomeNewVideoAdapter);
+    }
+
+    /**
+     * 设置私人训练列表适配器
+     */
+    private void setHomePrivateAdapter() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
+        mHomePrivateView.setLayoutManager(gridLayoutManager);
+        mHomePrivateAdapter = new HomePrivateAdapter();
+        mHomePrivateView.setAdapter(mHomePrivateAdapter);
+
     }
 
     @Override
@@ -157,6 +189,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         mHomePresenter.getPayAlbumData();
         mHomePresenter.getHomeTeachData();
         mHomePresenter.getHomeGraduateData();
+        mHomePresenter.getHomeNewVideoData();
+        mHomePresenter.getHomePrivateData();
     }
 
     @Override
@@ -203,6 +237,16 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     @Override
     public void onHomeGraduateLoad(List<HomeGraduateData.DataBean> graduateData) {
         mHomeGraduateAdapter.setData(graduateData);
+    }
+
+    @Override
+    public void onHomeNewVideoDataLoad(List<HomeNewVideoData.DataBean> newVideoData) {
+        mHomeNewVideoAdapter.setData(newVideoData);
+    }
+
+    @Override
+    public void onHomePrivateDataLoad(List<HomePrivateData.DataBean> privateData) {
+        mHomePrivateAdapter.setData(privateData);
     }
 
     @Override

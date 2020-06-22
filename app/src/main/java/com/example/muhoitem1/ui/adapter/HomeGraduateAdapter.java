@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.muhoitem1.R;
-import com.example.muhoitem1.model.domain.HomeGraduateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeGraduateData;
 
 import java.util.ArrayList;
 import java.util.List;

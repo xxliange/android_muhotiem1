@@ -1,7 +1,7 @@
 package com.example.muhoitem1.view;
 
 import com.example.muhoitem1.base.IBaseCallback;
-import com.example.muhoitem1.model.domain.HotListData;
+import com.example.muhoitem1.model.domain.HotData.HotListData;
 
 import java.util.List;
 

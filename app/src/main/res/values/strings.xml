@@ -15,4 +15,6 @@
     <string name="text_home_payAlbum_title">精品专辑</string>
     <string name="text_home_teach_title">幕后教学</string>
     <string name="text_home_graduate_title">研究所</string>
+    <string name="text_home_newVideo_title">最新视频</string>
+    <string name="text_home_private_title">私人训练</string>
 </resources>

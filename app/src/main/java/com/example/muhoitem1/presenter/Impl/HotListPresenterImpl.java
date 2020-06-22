@@ -1,7 +1,7 @@
 package com.example.muhoitem1.presenter.Impl;
 
 import com.example.muhoitem1.model.Api;
-import com.example.muhoitem1.model.domain.HotListData;
+import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.presenter.IHotListPresenter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.RetrofitManaget;

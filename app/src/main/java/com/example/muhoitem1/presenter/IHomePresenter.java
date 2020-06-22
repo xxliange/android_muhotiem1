@@ -33,5 +33,15 @@ public interface IHomePresenter extends IBaseViewPresenter<IHomeCallback> {
      */
     void getHomeGraduateData();
 
+    /**
+     * 获取首页最新视频列表
+     */
+    void getHomeNewVideoData();
+
+    /**
+     * 获取首页私人训练视频列表数据
+     */
+    void getHomePrivateData();
+
 
 }

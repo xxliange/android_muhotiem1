@@ -1,11 +1,13 @@
 package com.example.muhoitem1.model;
 
-import com.example.muhoitem1.model.domain.BannerData;
-import com.example.muhoitem1.model.domain.HomeGraduateData;
-import com.example.muhoitem1.model.domain.HomePayAlbumListData;
-import com.example.muhoitem1.model.domain.HomeTeachData;
-import com.example.muhoitem1.model.domain.HotListData;
-import com.example.muhoitem1.model.domain.StarListData;
+import com.example.muhoitem1.model.domain.HomeData.BannerData;
+import com.example.muhoitem1.model.domain.HomeData.HomeGraduateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeNewVideoData;
+import com.example.muhoitem1.model.domain.HomeData.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeData.HomePrivateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
+import com.example.muhoitem1.model.domain.HotData.HotListData;
+import com.example.muhoitem1.model.domain.HomeData.StarListData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -56,4 +58,13 @@ public interface Api {
      */
     @GET("getSubjectByType")
     Call<HomeGraduateData> getHomeGraduateData(@Query("type") int type, @Query("l") int l);
+
+    /**
+     * 获取首页最新视频列表
+     * @return
+     */
+    @GET("webHomeContentVideo")
+    Call<HomeNewVideoData> getHomeNewVideoData();
+    @GET("getPrivateWorkouts")
+    Call<HomePrivateData> getHomePrivateData(@Query("l") int l);
 }

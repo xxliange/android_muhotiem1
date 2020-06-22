@@ -149,15 +149,6 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:id="@+id/home_teach_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="@string/text_go_moreStar"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:textColor="@color/colorGrey" />
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/home_teach_view"
                             app:layout_constraintTop_toBottomOf="@+id/home_teach_title"
@@ -191,15 +182,6 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:id="@+id/home_graduate_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="@string/text_go_moreStar"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:textColor="@color/colorGrey" />
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/home_graduate_view"
                             app:layout_constraintTop_toBottomOf="@+id/home_graduate_title"
@@ -213,6 +195,90 @@
                             android:layout_marginBottom="10dp"
                             android:background="@color/white"
                             android:overScrollMode="never" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!-- 最新视频 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@color/white">
+                        <TextView
+                            android:id="@+id/home_newVideo_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/text_home_newVideo_title"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/home_newVideo_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/text_go_moreStar"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:textColor="@color/colorGrey" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/home_newVideo_view"
+                            app:layout_constraintTop_toBottomOf="@+id/home_newVideo_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/white"
+                            android:overScrollMode="never"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!-- 私人训练 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@color/white">
+                        <TextView
+                            android:id="@+id/home_private_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/text_home_private_title"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/home_private_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/text_go_moreStar"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:textColor="@color/colorGrey" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/home_private_view"
+                            app:layout_constraintTop_toBottomOf="@+id/home_private_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/white"
+                            android:overScrollMode="never"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 

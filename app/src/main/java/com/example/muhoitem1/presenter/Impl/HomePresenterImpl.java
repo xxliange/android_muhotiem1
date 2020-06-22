@@ -1,13 +1,14 @@
 package com.example.muhoitem1.presenter.Impl;
 
 import com.example.muhoitem1.model.Api;
-import com.example.muhoitem1.model.domain.BannerData;
-import com.example.muhoitem1.model.domain.HomeGraduateData;
-import com.example.muhoitem1.model.domain.HomePayAlbumListData;
-import com.example.muhoitem1.model.domain.HomeTeachData;
-import com.example.muhoitem1.model.domain.StarListData;
+import com.example.muhoitem1.model.domain.HomeData.BannerData;
+import com.example.muhoitem1.model.domain.HomeData.HomeGraduateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeNewVideoData;
+import com.example.muhoitem1.model.domain.HomeData.HomePayAlbumListData;
+import com.example.muhoitem1.model.domain.HomeData.HomePrivateData;
+import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
+import com.example.muhoitem1.model.domain.HomeData.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
-import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.RetrofitManaget;
 import com.example.muhoitem1.view.IHomeCallback;
@@ -155,7 +156,7 @@ public class HomePresenterImpl implements IHomePresenter {
     public void getHomeGraduateData() {
         Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
         Api api = retrofit.create(Api.class);
-        Call<HomeGraduateData> task = api.getHomeGraduateData(2,1);
+        Call<HomeGraduateData> task = api.getHomeGraduateData(2, 1);
         task.enqueue(new Callback<HomeGraduateData>() {
             @Override
             public void onResponse(Call<HomeGraduateData> call, Response<HomeGraduateData> response) {
@@ -168,6 +169,50 @@ public class HomePresenterImpl implements IHomePresenter {
 
             @Override
             public void onFailure(Call<HomeGraduateData> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getHomeNewVideoData() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        Api api = retrofit.create(Api.class);
+        Call<HomeNewVideoData> task = api.getHomeNewVideoData();
+        task.enqueue(new Callback<HomeNewVideoData>() {
+            @Override
+            public void onResponse(Call<HomeNewVideoData> call, Response<HomeNewVideoData> response) {
+                int code = response.code();
+                if (code == HttpURLConnection.HTTP_OK) {
+                    List<HomeNewVideoData.DataBean> data = response.body().getData();
+                    mCallback.onHomeNewVideoDataLoad(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HomeNewVideoData> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getHomePrivateData() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        Api api = retrofit.create(Api.class);
+        Call<HomePrivateData> task = api.getHomePrivateData(1);
+        task.enqueue(new Callback<HomePrivateData>() {
+            @Override
+            public void onResponse(Call<HomePrivateData> call, Response<HomePrivateData> response) {
+                int code = response.code();
+                if (code == HttpURLConnection.HTTP_OK) {
+                    List<HomePrivateData.DataBean> data = response.body().getData();
+                    mCallback.onHomePrivateDataLoad(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HomePrivateData> call, Throwable t) {
 
             }
         });

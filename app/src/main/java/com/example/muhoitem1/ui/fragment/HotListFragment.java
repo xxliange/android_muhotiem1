@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
-import com.example.muhoitem1.model.domain.HotListData;
+import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.presenter.Impl.HotListPresenterImpl;
 import com.example.muhoitem1.ui.activity.HotDetailActivity;
 import com.example.muhoitem1.ui.adapter.HotListContentAdapter;

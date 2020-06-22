@@ -1,4 +1,4 @@
-package com.example.muhoitem1.model.domain;
+package com.example.muhoitem1.model.domain.HotData;
 
 import java.util.List;
 
