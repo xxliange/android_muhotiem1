@@ -1,11 +1,11 @@
 package com.example.muhoitem1.presenter.Impl;
 
-import android.util.Log;
-
 import com.example.muhoitem1.model.Api;
 import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.HomePayAlbumListData;
 import com.example.muhoitem1.model.domain.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
+import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.RetrofitManaget;
 import com.example.muhoitem1.view.IHomeCallback;
@@ -54,7 +54,7 @@ public class HomePresenterImpl implements IHomePresenter {
                 } else {
                     //请求失败
                     LogUtils.i(HomePresenterImpl.this, "请求失败！");
-                    if (mCallback!=null) {
+                    if (mCallback != null) {
                         mCallback.onNetworkError();
                     }
                 }
@@ -65,7 +65,7 @@ public class HomePresenterImpl implements IHomePresenter {
                 //加载失败的结果
                 //TODO:
                 LogUtils.e(HomePresenterImpl.this, t.toString());
-                if (mCallback!=null) {
+                if (mCallback != null) {
                     mCallback.onNetworkError();
                 }
             }
@@ -85,8 +85,7 @@ public class HomePresenterImpl implements IHomePresenter {
             @Override
             public void onResponse(Call<StarListData> call, Response<StarListData> response) {
                 int code = response.code();
-                if (code== HttpURLConnection.HTTP_OK) {
-//                    LogUtils.d(HomePresenterImpl.this,"StarListData --> " + response.body().getData().toString());
+                if (code == HttpURLConnection.HTTP_OK) {
                     List<StarListData.DataBean> data = response.body().getData();
                     mCallback.onStarListDataLoad(data);
                 }
@@ -94,6 +93,34 @@ public class HomePresenterImpl implements IHomePresenter {
 
             @Override
             public void onFailure(Call<StarListData> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    /**
+     * 获取精品专辑列表
+     */
+    @Override
+    public void getPayAlbumData() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        Api api = retrofit.create(Api.class);
+        Call<HomePayAlbumListData> task = api.getHomePayAlbumListData();
+        task.enqueue(new Callback<HomePayAlbumListData>() {
+            @Override
+            public void onResponse(Call<HomePayAlbumListData> call, Response<HomePayAlbumListData> response) {
+                int code = response.code();
+                if (code == HttpURLConnection.HTTP_OK) {
+//                    LogUtils.d(HomePresenterImpl.this,response.body().getData().size()+"");
+                    List<HomePayAlbumListData.DataBean> data = response.body().getData();
+                    mCallback.onHomePayAlbumDataLoad(data);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<HomePayAlbumListData> call, Throwable t) {
 
             }
         });

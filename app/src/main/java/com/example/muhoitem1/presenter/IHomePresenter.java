@@ -18,5 +18,10 @@ public interface IHomePresenter extends IBaseViewPresenter<IHomeCallback> {
      */
     void getStarListData();
 
+    /**
+     * 获取精品专辑数据
+     */
+    void getPayAlbumData();
+
 
 }

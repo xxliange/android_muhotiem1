@@ -1,6 +1,7 @@
 package com.example.muhoitem1.model;
 
 import com.example.muhoitem1.model.domain.BannerData;
+import com.example.muhoitem1.model.domain.HomePayAlbumListData;
 import com.example.muhoitem1.model.domain.HotListData;
 import com.example.muhoitem1.model.domain.StarListData;
 
@@ -15,4 +16,6 @@ public interface Api {
     Call<HotListData> getHotListData(@Query("l") int l);
     @GET("getVipPlayer")
     Call<StarListData> getStarListData();
+    @GET("getTeachingAlbum")
+    Call<HomePayAlbumListData> getHomePayAlbumListData();
 }
