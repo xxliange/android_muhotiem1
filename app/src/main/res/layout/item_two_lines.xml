@@ -16,14 +16,14 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/item_card"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:cardCornerRadius="6dp">
                     <ImageView
                         android:id="@+id/item_twoLine_thumb"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         />
