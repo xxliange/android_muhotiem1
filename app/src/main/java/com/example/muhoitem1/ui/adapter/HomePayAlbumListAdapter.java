@@ -38,14 +38,13 @@ public class HomePayAlbumListAdapter extends RecyclerView.Adapter<HomePayAlbumLi
 
     @Override
     public int getItemCount() {
-//        if (mData == null) {
-//            return 0;
-//        } else if (mData.size() >= 4) {
-//            return 4;
-//        } else {
-//            return mData.size();
-//        }
-        return mData.size();
+        if (mData == null) {
+            return 0;
+        } else if (mData.size() >= 6) {
+            return 6;
+        } else {
+            return mData.size();
+        }
     }
 
     public void setData(List<HomePayAlbumListData.DataBean> payAlbumListData) {
