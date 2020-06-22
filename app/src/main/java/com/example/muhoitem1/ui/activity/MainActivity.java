@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         mBind = ButterKnife.bind(this);
         initFragment();
         initListener();
-//        switchFragment(mHomeFragment);
-        switchFragment(mMineFragment);
+        switchFragment(mHomeFragment);
+//        switchFragment(mMineFragment);
     }
 
     @Override

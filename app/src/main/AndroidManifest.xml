@@ -27,6 +27,8 @@
             android:launchMode="singleTop">
 
         </activity>
+        <activity android:name=".ui.activity.mineActivity.LoginActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
