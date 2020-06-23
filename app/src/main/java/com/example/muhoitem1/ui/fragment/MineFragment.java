@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.ui.activity.HotDetailActivity;
@@ -68,7 +69,7 @@ public class MineFragment extends BaseFragment {
         String nickname = mSharedPreferences.getString("nickname", "");
         int mid = mSharedPreferences.getInt("mid", 0);
         if (mid != 0) {
-            Glide.with(this).load(avatar).into(this.avatar);
+            Glide.with(this).load(avatar).apply(RequestOptions.circleCropTransform()).into(this.avatar);
             userNick.setText(nickname);
             exitBtn.setVisibility(View.VISIBLE);
             loginBtn.setVisibility(View.GONE);
