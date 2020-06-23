@@ -67,14 +67,19 @@ public class MineFragment extends BaseFragment {
 
     private void getUserInfo() {
         MineLoginData userData = MuhoCache.getInstance().get("userData", MineLoginData.class);
-        if (userData.getMessage()!=null) {
-            String avatar = userData.getData().getAvatar();
-            String nickname = userData.getData().getNickname();
-            LogUtils.d(this, "userData --> " + userData.getStateCode());
-            Glide.with(this).load(avatar).apply(RequestOptions.circleCropTransform()).into(this.avatar);
-            userNick.setText(nickname);
-            exitBtn.setVisibility(View.VISIBLE);
-            loginBtn.setVisibility(View.GONE);
+        if (userData != null) {
+            if (userData.getMessage() != null) {
+                String avatar = userData.getData().getAvatar();
+                String nickname = userData.getData().getNickname();
+                LogUtils.d(this, "userData --> " + userData.getStateCode());
+                Glide.with(this).load(avatar).apply(RequestOptions.circleCropTransform()).into(this.avatar);
+                userNick.setText(nickname);
+                exitBtn.setVisibility(View.VISIBLE);
+                loginBtn.setVisibility(View.GONE);
+            } else {
+                exitBtn.setVisibility(View.GONE);
+                loginBtn.setVisibility(View.VISIBLE);
+            }
         }else{
             exitBtn.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);
@@ -84,7 +89,7 @@ public class MineFragment extends BaseFragment {
     @Override
     protected void initListener() {
         exitBtn.setOnClickListener(v -> {
-            MuhoCache.getInstance().put("userData",null);
+            MuhoCache.getInstance().put("userData", null);
             exitBtn.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);
             userNick.setText("登陆");
