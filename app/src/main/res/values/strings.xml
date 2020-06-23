@@ -19,4 +19,6 @@
     <string name="text_home_private_title">私人训练</string>
     <string name="text_mine_unlogin_nick">登陆</string>
     <string name="text_exitlogin">退出登陆</string>
+    <string name="text_dialog_okText">确认</string>
+    <string name="text_dialog_cancleText">取消</string>
 </resources>

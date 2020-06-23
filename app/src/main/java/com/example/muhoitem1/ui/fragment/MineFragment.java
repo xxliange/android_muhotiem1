@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
@@ -16,6 +18,7 @@ import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.ui.activity.HotDetailActivity;
 import com.example.muhoitem1.ui.activity.mineActivity.LoginActivity;
+import com.example.muhoitem1.ui.activity.publicActivity.DialogActivity;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
 
@@ -61,6 +64,7 @@ public class MineFragment extends BaseFragment {
         item_mine_historyTitle.setText("我的历史");
         item_mine_collectTitle.setText("我的收藏");
         item_mine_subscriptionTitle.setText("我的订阅");
+
         getUserInfo();
 
     }
@@ -89,11 +93,14 @@ public class MineFragment extends BaseFragment {
     @Override
     protected void initListener() {
         exitBtn.setOnClickListener(v -> {
-            MuhoCache.getInstance().put("userData", null);
-            exitBtn.setVisibility(View.GONE);
-            loginBtn.setVisibility(View.VISIBLE);
-            userNick.setText("登陆");
-            Glide.with(this).load(R.drawable.mine_unlogin_avatar).into(this.avatar);
+            final DialogActivity dialog = new DialogActivity(getContext());
+            dialog.setMessage("asdasda");
+            //TODO:
+//            MuhoCache.getInstance().put("userData", null);
+//            exitBtn.setVisibility(View.GONE);
+//            loginBtn.setVisibility(View.VISIBLE);
+//            userNick.setText("登陆");
+//            Glide.with(this).load(R.drawable.mine_unlogin_avatar).into(this.avatar);
         });
         loginBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), LoginActivity.class);
