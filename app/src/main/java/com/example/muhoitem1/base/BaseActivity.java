@@ -19,6 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         initEvent();
         initPresent();
+
     }
 
     protected abstract void initPresent();

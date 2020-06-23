@@ -15,6 +15,7 @@ import com.example.muhoitem1.ui.fragment.HomeFragment;
 import com.example.muhoitem1.ui.fragment.HotListFragment;
 import com.example.muhoitem1.ui.fragment.MineFragment;
 import com.example.muhoitem1.utils.LogUtils;
+import com.example.muhoitem1.utils.MuhoCache;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
@@ -37,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
         mBind = ButterKnife.bind(this);
         initFragment();
         initListener();
+        initCache();
         switchFragment(mHomeFragment);
 //        switchFragment(mMineFragment);
+    }
+
+    private void initCache() {
+        MuhoCache.getInstance().init(getApplicationContext());
     }
 
     @Override

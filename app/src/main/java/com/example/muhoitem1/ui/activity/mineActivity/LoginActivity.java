@@ -19,6 +19,7 @@ import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.presenter.IMineLoginPresenter;
 import com.example.muhoitem1.ui.activity.MainActivity;
 import com.example.muhoitem1.utils.LogUtils;
+import com.example.muhoitem1.utils.MuhoCache;
 import com.example.muhoitem1.utils.PresentManager;
 import com.example.muhoitem1.utils.ToastUtils;
 import com.example.muhoitem1.view.IMineLoginCallback;
@@ -150,16 +151,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     @Override
-    public void onSuccessLogin(MineLoginData.DataBean userData) {
-        LogUtils.d(this, userData.toString());
-        SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
-        SharedPreferences.Editor edit = data.edit();
-        edit.putString("nickname",userData.getNickname());
-        edit.putInt("mid",userData.getMid());
-        edit.putString("mobile",userData.getMobile());
-        edit.putString("token",userData.getToken());
-        edit.putString("avatar",userData.getAvatar());
-        edit.apply();
+    public void onSuccessLogin(MineLoginData userData) {
+        LogUtils.d(this,"data --> " + userData);
+        MuhoCache.getInstance().put("userData",userData);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IMineLoginCallback extends IBaseCallback {
 
-    void onSuccessLogin(MineLoginData.DataBean userData);
+    void onSuccessLogin(MineLoginData userData);
 }

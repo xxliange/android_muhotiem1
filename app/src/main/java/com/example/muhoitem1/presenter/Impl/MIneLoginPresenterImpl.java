@@ -39,7 +39,7 @@ public class MIneLoginPresenterImpl implements IMineLoginPresenter {
                 int code = response.code();
                 if (code == HttpURLConnection.HTTP_OK) {
 //                    LogUtils.d(MIneLoginPresenterImpl.this,"data --> " + response.body().getData().toString());
-                    MineLoginData.DataBean data = response.body().getData();
+                    MineLoginData data = response.body();
 //                    LogUtils.d(MIneLoginPresenterImpl.this, "data --> " + data);
                     mViewCallback.onSuccessLogin(data);
                 }

@@ -3,6 +3,7 @@ package com.example.muhoitem1.ui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,8 +13,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
+import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.ui.activity.HotDetailActivity;
 import com.example.muhoitem1.ui.activity.mineActivity.LoginActivity;
+import com.example.muhoitem1.utils.LogUtils;
+import com.example.muhoitem1.utils.MuhoCache;
 
 import org.w3c.dom.Text;
 
@@ -37,7 +41,6 @@ public class MineFragment extends BaseFragment {
     public TextView item_mine_historyTitle;
     public TextView item_mine_collectTitle;
     public TextView item_mine_subscriptionTitle;
-    private SharedPreferences mSharedPreferences;
 
     @Override
     protected int getRootViewResId() {
@@ -58,17 +61,16 @@ public class MineFragment extends BaseFragment {
         item_mine_historyTitle.setText("我的历史");
         item_mine_collectTitle.setText("我的收藏");
         item_mine_subscriptionTitle.setText("我的订阅");
-
         getUserInfo();
 
     }
 
     private void getUserInfo() {
-        mSharedPreferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String avatar = mSharedPreferences.getString("avatar", "");
-        String nickname = mSharedPreferences.getString("nickname", "");
-        int mid = mSharedPreferences.getInt("mid", 0);
-        if (mid != 0) {
+        MineLoginData userData = MuhoCache.getInstance().get("userData", MineLoginData.class);
+        if (userData.getMessage()!=null) {
+            String avatar = userData.getData().getAvatar();
+            String nickname = userData.getData().getNickname();
+            LogUtils.d(this, "userData --> " + userData.getStateCode());
             Glide.with(this).load(avatar).apply(RequestOptions.circleCropTransform()).into(this.avatar);
             userNick.setText(nickname);
             exitBtn.setVisibility(View.VISIBLE);
@@ -82,7 +84,7 @@ public class MineFragment extends BaseFragment {
     @Override
     protected void initListener() {
         exitBtn.setOnClickListener(v -> {
-            mSharedPreferences.edit().clear();
+            MuhoCache.getInstance().put("userData",null);
             exitBtn.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);
             userNick.setText("登陆");

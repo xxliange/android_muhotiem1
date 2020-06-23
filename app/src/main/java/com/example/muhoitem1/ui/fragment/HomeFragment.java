@@ -1,8 +1,6 @@
 package com.example.muhoitem1.ui.fragment;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,13 +29,11 @@ import com.example.muhoitem1.ui.adapter.HomePrivateAdapter;
 import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
 import com.example.muhoitem1.ui.adapter.HomeTeachAdapter;
 import com.example.muhoitem1.ui.adapter.LooperPagerAdapter;
-import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
 import com.example.muhoitem1.view.IHomeCallback;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 
