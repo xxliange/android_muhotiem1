@@ -8,9 +8,13 @@ import com.example.muhoitem1.model.domain.HomeData.HomePrivateData;
 import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
 import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.model.domain.HomeData.StarListData;
+import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface Api {
@@ -65,6 +69,16 @@ public interface Api {
      */
     @GET("webHomeContentVideo")
     Call<HomeNewVideoData> getHomeNewVideoData();
+
+    /**
+     * 获取私人训练列表
+     * @param l
+     * @return
+     */
     @GET("getPrivateWorkouts")
     Call<HomePrivateData> getHomePrivateData(@Query("l") int l);
+
+    @FormUrlEncoded
+    @POST("sign/login")
+    Call<MineLoginData> getMineLoginData(@Field("acount") String phone,@Field("password") String pass);
 }

@@ -5,6 +5,11 @@ import com.example.muhoitem1.base.BaseActivity;
 
 public class HotDetailActivity extends BaseActivity {
     @Override
+    protected void initPresent() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }
