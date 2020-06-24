@@ -55,4 +55,6 @@ dependencies {
 
     implementation 'com.snappydb:snappydb-lib:0.5.2'
     implementation 'com.alibaba:fastjson:1.2.33'
+
+    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
 }

@@ -1,6 +1,7 @@
 package com.example.muhoitem1.ui.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
 import com.example.muhoitem1.model.domain.HomeData.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.presenter.Impl.HomePresenterImpl;
+import com.example.muhoitem1.ui.activity.VideoActivity.TeachVideoActivity;
 import com.example.muhoitem1.ui.adapter.HomeGraduateAdapter;
 import com.example.muhoitem1.ui.adapter.HomeNewVideoAdapter;
 import com.example.muhoitem1.ui.adapter.HomePayAlbumListAdapter;
@@ -29,6 +31,7 @@ import com.example.muhoitem1.ui.adapter.HomePrivateAdapter;
 import com.example.muhoitem1.ui.adapter.HomeStarListAdapter;
 import com.example.muhoitem1.ui.adapter.HomeTeachAdapter;
 import com.example.muhoitem1.ui.adapter.LooperPagerAdapter;
+import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
 import com.example.muhoitem1.view.IHomeCallback;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -37,7 +40,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HomeFragment extends BaseFragment implements IHomeCallback {
+public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayAlbumListAdapter.OnHomePayAlbumListItemClickListener {
     protected Activity mActivity;
     //获取banner控件
     @BindView(R.id.looper_pager)
@@ -168,6 +171,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
                 refreshLayout1.finishRefresh();
             }
         });
+        mHomePayAlbumListAdapter.setOnHomePayAlbumListItemClickListener(this);
     }
 
     @Override
@@ -280,5 +284,14 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
         if (mHomePresenter != null) {
             mHomePresenter.getBannerData();
         }
+    }
+
+    @Override
+    public void onAlbumItemClick(HomePayAlbumListData.DataBean DataBean) {
+        Intent intent = new Intent(getContext(), TeachVideoActivity.class);
+        intent.putExtra("sid",DataBean.getSid());
+        intent.putExtra("name",DataBean.getName());
+        getActivity().startActivity(intent);
+
     }
 }

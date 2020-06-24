@@ -47,7 +47,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         back.setOnClickListener(v -> {
             finish();
         });
-        // TODO:
         toolTitle.setText("密码登陆");
     }
 
