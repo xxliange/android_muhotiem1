@@ -17,13 +17,13 @@ import butterknife.BindView;
 
 public class DialogActivity extends Dialog{
 
-    @BindView(R.id.dialog_title)
+//    @BindView(R.id.dialog_title)
     public TextView titleTv;
-    @BindView(R.id.dialog_message)
+//    @BindView(R.id.dialog_message)
     public TextView messageTv;
-    @BindView(R.id.dialog_cancle)
+//    @BindView(R.id.dialog_cancle)
     public TextView cancleBtn;
-    @BindView(R.id.dialog_ok)
+//    @BindView(R.id.dialog_ok)
     public TextView okBtn;
 
     private  Context context;
@@ -50,20 +50,14 @@ public class DialogActivity extends Dialog{
     }
 
     private void initEvent() {
-        okBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onClickBottomListener!=null) {
-                    onClickBottomListener.onOK();
-                }
+        okBtn.setOnClickListener(v -> {
+            if (onClickBottomListener!=null) {
+                onClickBottomListener.onOK();
             }
         });
-        cancleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onClickBottomListener!=null) {
-                    onClickBottomListener.onCancle();
-                }
+        cancleBtn.setOnClickListener(v -> {
+            if (onClickBottomListener!=null) {
+                onClickBottomListener.onCancle();
             }
         });
     }
@@ -91,6 +85,10 @@ public class DialogActivity extends Dialog{
     }
 
     private void initView() {
+        titleTv = findViewById(R.id.dialog_title);
+        messageTv = findViewById(R.id.dialog_message);
+        okBtn = findViewById(R.id.dialog_ok);
+        cancleBtn = findViewById(R.id.dialog_cancle);
     }
 
     //设置确定取消按钮的回调
@@ -100,8 +98,8 @@ public class DialogActivity extends Dialog{
         return this;
     }
     public interface OnClickBottomListener{
-        public void onOK();
-        public void onCancle();
+        void onOK();
+        void onCancle();
     }
 
     public String getTitle() {

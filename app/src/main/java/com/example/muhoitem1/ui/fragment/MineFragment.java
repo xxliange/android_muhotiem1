@@ -1,28 +1,21 @@
 package com.example.muhoitem1.ui.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
-import com.example.muhoitem1.ui.activity.HotDetailActivity;
 import com.example.muhoitem1.ui.activity.mineActivity.LoginActivity;
 import com.example.muhoitem1.ui.activity.publicActivity.DialogActivity;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
-
-import org.w3c.dom.Text;
+import com.example.muhoitem1.utils.ToastUtils;
 
 import java.util.Objects;
 
@@ -84,7 +77,7 @@ public class MineFragment extends BaseFragment {
                 exitBtn.setVisibility(View.GONE);
                 loginBtn.setVisibility(View.VISIBLE);
             }
-        }else{
+        } else {
             exitBtn.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);
         }
@@ -94,13 +87,23 @@ public class MineFragment extends BaseFragment {
     protected void initListener() {
         exitBtn.setOnClickListener(v -> {
             final DialogActivity dialog = new DialogActivity(getContext());
-            dialog.setMessage("asdasda");
-            //TODO:
-//            MuhoCache.getInstance().put("userData", null);
-//            exitBtn.setVisibility(View.GONE);
-//            loginBtn.setVisibility(View.VISIBLE);
-//            userNick.setText("登陆");
-//            Glide.with(this).load(R.drawable.mine_unlogin_avatar).into(this.avatar);
+            dialog.setMessage("确认退出登陆嘛?");
+            dialog.setOnClickBottomListener(new DialogActivity.OnClickBottomListener() {
+                @Override
+                public void onOK() {
+                    MuhoCache.getInstance().put("userData", null);
+                    exitBtn.setVisibility(View.GONE);
+                    loginBtn.setVisibility(View.VISIBLE);
+                    userNick.setText("登陆");
+                    Glide.with(MineFragment.this).load(R.drawable.mine_unlogin_avatar).into(MineFragment.this.avatar);
+                    dialog.dismiss();
+                }
+                @Override
+                public void onCancle() {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         });
         loginBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), LoginActivity.class);
