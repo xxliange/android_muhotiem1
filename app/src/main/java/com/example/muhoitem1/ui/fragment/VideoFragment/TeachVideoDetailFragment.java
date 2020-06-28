@@ -129,6 +129,7 @@ public class TeachVideoDetailFragment extends BaseFragment implements ITeachVide
         views.setText(MessageFormat.format("播放量 : {0}", data.get(0).getView()));
         mVideoTagsAdapter.setData(splitTags(data.get(1).getTags()));
         mVideoDetailListAdapter.setData(data);
+        listenter.showItem(data.get(0));
     }
 
     /**
