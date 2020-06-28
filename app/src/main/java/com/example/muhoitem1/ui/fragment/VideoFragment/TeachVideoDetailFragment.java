@@ -7,14 +7,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
+import com.example.muhoitem1.model.domain.VideoData.TeachVideoRandomData;
 import com.example.muhoitem1.presenter.ITeachVideoPresenter;
 import com.example.muhoitem1.ui.adapter.VideoDetailListAdapter;
+import com.example.muhoitem1.ui.adapter.VideoRandomAdapter;
 import com.example.muhoitem1.ui.adapter.VideoTagsAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.PresentManager;
@@ -38,10 +41,13 @@ public class TeachVideoDetailFragment extends BaseFragment implements ITeachVide
     public RecyclerView tagsList;
     @BindView(R.id.teachVideo_detail_list)
     public RecyclerView detailList;
+    @BindView(R.id.teachVideo_recommend_list)
+    public RecyclerView randomList;
     private ITeachVideoPresenter mTeachVideoPresenter;
     private VideoTagsAdapter mVideoTagsAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private VideoDetailListAdapter mVideoDetailListAdapter;
+    private VideoRandomAdapter mVideoRandomAdapter;
 
 
     @Override
@@ -75,6 +81,16 @@ public class TeachVideoDetailFragment extends BaseFragment implements ITeachVide
         setUpState(State.SUCCESS);
         setTagsAdapter();
         setDetailAdapter();
+        setRandomAdaper();
+    }
+
+    //设置随机推荐视频列表适配器
+    private void setRandomAdaper() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
+        randomList.setLayoutManager(gridLayoutManager);
+        mVideoRandomAdapter = new VideoRandomAdapter();
+        randomList.setAdapter(mVideoRandomAdapter);
+
     }
 
     //设置标签列表适配器
@@ -95,7 +111,9 @@ public class TeachVideoDetailFragment extends BaseFragment implements ITeachVide
 
     @Override
     protected void loadData() {
+
         mTeachVideoPresenter.getTeachVideoData();
+        mTeachVideoPresenter.getTeachVideoRandom();
     }
 
     /**
@@ -105,12 +123,21 @@ public class TeachVideoDetailFragment extends BaseFragment implements ITeachVide
      */
     @Override
     public void onShowTeachVideoInfo(List<TeachVideoData> data) {
-        LogUtils.d(this, "data --> " + data.toString());
+//        LogUtils.d(this, "data --> " + data.toString());
         title.setText(data.get(0).getTitle());
         name.setText(String.format("专辑名 : %s", data.get(0).getName()));
         views.setText(MessageFormat.format("播放量 : {0}", data.get(0).getView()));
         mVideoTagsAdapter.setData(splitTags(data.get(1).getTags()));
         mVideoDetailListAdapter.setData(data);
+    }
+
+    /**
+     * 获取随机推荐视频列表
+     * @param data
+     */
+    @Override
+    public void onGetTeachVideoRandomData(List<TeachVideoRandomData> data) {
+        mVideoRandomAdapter.setData(data);
     }
 
     @Override

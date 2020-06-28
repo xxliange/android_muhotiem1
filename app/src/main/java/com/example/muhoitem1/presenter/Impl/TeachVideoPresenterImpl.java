@@ -2,6 +2,7 @@ package com.example.muhoitem1.presenter.Impl;
 
 import com.example.muhoitem1.model.Api;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
+import com.example.muhoitem1.model.domain.VideoData.TeachVideoRandomData;
 import com.example.muhoitem1.model.network.BaseObserver;
 import com.example.muhoitem1.presenter.ITeachVideoPresenter;
 import com.example.muhoitem1.utils.LogUtils;
@@ -32,9 +33,30 @@ public class TeachVideoPresenterImpl implements ITeachVideoPresenter {
 
                     @Override
                     protected void onSuccess(List<TeachVideoData> data) {
-                        LogUtils.d(TeachVideoPresenterImpl.this, "onSuccess --> " + data.size());
-                        LogUtils.d(TeachVideoPresenterImpl.this, "onSuccess --> " + data.toString());
+//                        LogUtils.d(TeachVideoPresenterImpl.this, "onSuccess --> " + data.size());
+//                        LogUtils.d(TeachVideoPresenterImpl.this, "onSuccess --> " + data.toString());
                         mCallback.onShowTeachVideoInfo(data);
+                    }
+                });
+    }
+
+    @Override
+    public void getTeachVideoRandom() {
+        Retrofit retrofit = RetrofitManaget.getInstance().getRetrofit();
+        retrofit.create(Api.class)
+                .getTeachVideoRandomData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<List<TeachVideoRandomData>>() {
+                    @Override
+                    protected void onFailure(Throwable e, String message) {
+
+                    }
+
+                    @Override
+                    protected void onSuccess(List<TeachVideoRandomData> data) {
+//                        LogUtils.d(TeachVideoPresenterImpl.this, "data --> " + data.toString());
+                        mCallback.onGetTeachVideoRandomData(data);
                     }
                 });
     }

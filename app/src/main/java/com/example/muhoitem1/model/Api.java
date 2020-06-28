@@ -10,6 +10,7 @@ import com.example.muhoitem1.model.domain.HomeData.StarListData;
 import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
+import com.example.muhoitem1.model.domain.VideoData.TeachVideoRandomData;
 
 import java.util.List;
 
@@ -93,14 +94,19 @@ public interface Api {
     @POST("sign/login")
     Call<MineLoginData> getMineLoginData(@Field("acount") String phone,@Field("password") String pass);
 
+    /**
+     * 获取视频列表数据
+     * @param sid
+     * @return
+     */
     @Headers({
             "user-id:0",
             "token:web"
     })
     @GET("webHomeSubjectBySetNumber")
-//    Call<BaseResponse<TeachVideoData>> getTeachVideoData(@Query("sid") int sid );
     Observable<BaseResponse<List<TeachVideoData>>> getTeachVideoData(@Query("sid") int sid);
-
-
+    // 获取随机推荐视频列表
+    @GET("webHomeSubjectByRandom")
+    Observable<BaseResponse<List<TeachVideoRandomData>>> getTeachVideoRandomData();
 
 }
