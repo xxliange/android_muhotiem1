@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
+import com.example.muhoitem1.model.network.NetWorkManager;
 import com.example.muhoitem1.ui.fragment.HomeFragment;
 import com.example.muhoitem1.ui.fragment.HotListFragment;
 import com.example.muhoitem1.ui.fragment.MineFragment;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         initFragment();
         initListener();
         initCache();
+        NetWorkManager.getInstance().init();
         switchFragment(mHomeFragment);
 //        switchFragment(mMineFragment);
     }

@@ -6,14 +6,19 @@ import com.example.muhoitem1.model.domain.HomeData.HomeNewVideoData;
 import com.example.muhoitem1.model.domain.HomeData.HomePayAlbumListData;
 import com.example.muhoitem1.model.domain.HomeData.HomePrivateData;
 import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
-import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.model.domain.HomeData.StarListData;
+import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
+import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
 
+import java.util.List;
+
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -78,7 +83,24 @@ public interface Api {
     @GET("getPrivateWorkouts")
     Call<HomePrivateData> getHomePrivateData(@Query("l") int l);
 
+    /**
+     * 用户账号密码登陆
+     * @param phone
+     * @param pass
+     * @return
+     */
     @FormUrlEncoded
     @POST("sign/login")
     Call<MineLoginData> getMineLoginData(@Field("acount") String phone,@Field("password") String pass);
+
+    @Headers({
+            "user-id:0",
+            "token:web"
+    })
+    @GET("webHomeSubjectBySetNumber")
+//    Call<BaseResponse<TeachVideoData>> getTeachVideoData(@Query("sid") int sid );
+    Observable<BaseResponse<List<TeachVideoData>>> getTeachVideoData(@Query("sid") int sid);
+
+
+
 }

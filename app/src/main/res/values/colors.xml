@@ -3,9 +3,45 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="white">#fff</color>
     <color name="mainColor">#f7c695</color>
     <color name="colorGrey">#a7a7a7</color>
     <color name="black">#000</color>
     <color name="red">#FF0000</color>
+    <color name="colorVideoDetailBack">#f1f1f1</color>
+
+
+    <color name="blackLight">#222222</color>
+    <color name="colorMain">#f7c695</color>
+
+    <color name="colorText">#808080</color>
+    <color name="colorPrimaryLight">#B2EBF2</color>
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="thirdText">#b9757575</color>
+    <color name="foreground">#FFFFFF</color>
+    <color name="background">#fafafa</color>
+    <color name="divier">#1ebdbdbd</color>
+    <color name="translucence">#80FFFFFF</color>
+    <color name="transparency">#00000000</color>
+    <color name="colorCollected">#81ff0000</color>
+    <color name="colorTag1">#f50000</color>
+    <color name="colorTag2">#00BCD4</color>
+    <color name="colorTip">#f50000</color>
+    <color name="colorIndicator">#00BCD4</color>
+    <color name="colorBorder">#00BCD4</color>
+    <color name="colorNavBtmBackground">#FFFFFF</color>
+    <color name="colorNavBtmIconTint">#00BCD4</color>
+    <color name="colorNavBtmText">#9E9E9E</color>
+    <color name="colorEtHint">#b59e9e9e</color>
+    <color name="colorTrackOpen">#03A9F4</color>
+    <color name="colorTrackClose">#757575</color>
+    <color name="colorSwitchButton">#9E9E9E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorRipple">#B3E5FC</color>
+    <color name="colorPress">#6abdbdbd</color>
+    <color name="colorElevation">#14bdbdbd</color>
+    <color name="colorPressFg">#4fffffff</color>
+    <color name="colorDialogBackground">#FFFFFF</color>
+    <color name="toast_background">#c8535353</color>
+    <color name="colorTipBackground">#81fafafa</color>
 </resources>

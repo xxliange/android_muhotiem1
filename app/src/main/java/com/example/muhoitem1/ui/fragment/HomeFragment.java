@@ -214,9 +214,9 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
             layoutParams.rightMargin = SizeUtils.dip2px(getContext(), 5);
             point.setLayoutParams(layoutParams);
             if (i == 0) {
-                point.setBackgroundResource(R.drawable.shape_indicator_point);
+//                point.setBackgroundResource(R.drawable.shape_indicator_point);
             } else {
-                point.setBackgroundResource(R.drawable.shape_indicator_normal);
+//                point.setBackgroundResource(R.drawable.shape_indicator_normal);
             }
 
             looperPointContainer.addView(point);
