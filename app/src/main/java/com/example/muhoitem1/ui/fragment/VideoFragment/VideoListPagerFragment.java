@@ -83,7 +83,7 @@ public class VideoListPagerFragment extends BaseFragment implements IVideoListCa
     @Override
     public void onLoadVideoList(List<VideoListData> listData) {
         LogUtils.d(this, "listData --> " + listData);
-        mContentAdapter.setData(listData);
+        mContentAdapter.setData(listData, mType);
 
     }
 

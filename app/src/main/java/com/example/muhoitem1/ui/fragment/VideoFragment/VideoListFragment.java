@@ -1,6 +1,7 @@
 package com.example.muhoitem1.ui.fragment.VideoFragment;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
@@ -14,6 +15,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -22,6 +24,8 @@ public class VideoListFragment extends BaseFragment {
     public ViewPager teachListPager;
     @BindView(R.id.teachList_tab)
     public TabLayout teachListTab;
+    @BindView(R.id.teachList_back)
+    public ImageView backBtn;
     private VideoListPagerAdapter mVideoListPagerAdapter;
 
     @Override
@@ -73,6 +77,7 @@ public class VideoListFragment extends BaseFragment {
     @Override
     protected void initListener() {
         super.initListener();
+        backBtn.setOnClickListener(v -> Objects.requireNonNull(getActivity()).finish());
     }
 
 }

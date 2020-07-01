@@ -4,19 +4,39 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/teachList_tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/mainColor"
-        app:tabSelectedTextColor="@color/mainColor"
-        app:tabRippleColor="@android:color/transparent"
-        app:tabMode="scrollable"
-        app:tabIndicatorHeight="2dp"
-        app:tabIndicatorFullWidth="true"
-        app:tabIndicator="@drawable/videolist_indicator"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/white"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/teachList_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_left"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/teachList_back"
+            android:id="@+id/teachList_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabIndicator="@drawable/videolist_indicator"
+            app:tabIndicatorColor="@color/mainColor"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            android:paddingRight="10dp"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/mainColor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/teachList_pager"
         android:layout_width="match_parent"

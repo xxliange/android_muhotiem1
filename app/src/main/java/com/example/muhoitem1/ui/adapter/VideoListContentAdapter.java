@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.model.domain.VideoData.VideoListData;
+import com.example.muhoitem1.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
 
 public class VideoListContentAdapter extends RecyclerView.Adapter<VideoListContentAdapter.InnerHolder> {
     private List<VideoListData> mData = new ArrayList<>();
+    private int mType = 0;
     @NonNull
     @Override
     public InnerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,7 +45,8 @@ public class VideoListContentAdapter extends RecyclerView.Adapter<VideoListConte
         }
     }
 
-    public void setData(List<VideoListData> listData) {
+    public void setData(List<VideoListData> listData, Integer type) {
+        mType = type;
         mData.clear();
         mData.addAll(listData);
         notifyDataSetChanged();
@@ -60,8 +63,13 @@ public class VideoListContentAdapter extends RecyclerView.Adapter<VideoListConte
         }
 
         public void setData(VideoListData videoListData) {
-            title.setText(videoListData.getTitle() == "" ? videoListData.getTitle() : videoListData.getName());
-            Glide.with(itemView.getContext()).load(videoListData.getThumb()).into(thumb);
+                LogUtils.d(this, "mType" + mType);
+            if (mType == 3) {
+                title.setText(videoListData.getTitle());
+            }else{
+                title.setText(videoListData.getTitle() == "" ? videoListData.getTitle() : videoListData.getName());
+            }
+            Glide.with(itemView.getContext()).load(videoListData.getThumb()).placeholder(R.drawable.placeholder).into(thumb);
         }
     }
 }
