@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/tool"
-        layout="@layout/common_toolbar"
-        />
+<!--    <include-->
+<!--        android:id="@+id/tool"-->
+<!--        layout="@layout/common_toolbar"-->
+<!--        />-->
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/refreshLayout"

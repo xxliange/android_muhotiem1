@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseActivity;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
@@ -41,6 +42,7 @@ public class TeachVideoActivity extends BaseActivity implements TeachVideoDetail
 //    public ImageView back;
     @BindView(R.id.teachVideo_player)
     public StandardGSYVideoPlayer videoPlayer;
+    public ImageView videoThumb;
     private OrientationUtils orientationUtils;
     private int mSid;
     private String mName;
@@ -57,6 +59,7 @@ public class TeachVideoActivity extends BaseActivity implements TeachVideoDetail
     }
 
     private void initVideo(String url, int cid){
+        videoThumb = findViewById(R.id.item_video_thumb);
         Map<String, String> header = new HashMap<>();
         header.put("ee","33");
         header.put("allowCrossProtocolRedirects", "true");
@@ -69,6 +72,7 @@ public class TeachVideoActivity extends BaseActivity implements TeachVideoDetail
                 .setShowFullAnimation(false)
                 .setNeedLockFull(false)
                 .setUrl(url)
+                .setThumbImageView(videoThumb)
                 .setMapHeadData(header)
                 .setCacheWithPlay(false)
                 .setVideoAllCallBack(new GSYSampleCallBack(){
@@ -188,7 +192,7 @@ public class TeachVideoActivity extends BaseActivity implements TeachVideoDetail
 
     @Override
     public void showItem(TeachVideoData bean) {
-        LogUtils.d(this, "data --> " + bean);
+//        LogUtils.d(this, "data --> " + bean);
         initVideo(bean.getVideo(), bean.getCid());
         videoPlayer.getTitleTextView().setText(bean.getTitle());
         videoPlayer.getTitleTextView().setMaxLines(1);

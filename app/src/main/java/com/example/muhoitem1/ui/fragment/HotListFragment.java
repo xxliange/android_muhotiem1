@@ -37,8 +37,8 @@ public class HotListFragment extends BaseFragment implements IHotListCallback, H
     public RefreshLayout refreshLayout;
     @BindView(R.id.hot_list_content_list)
     public RecyclerView mContentList;
-    @BindView(R.id.tool_title)
-    public TextView toolTitle;
+//    @BindView(R.id.tool_title)
+//    public TextView toolTitle;
     private HotListContentAdapter mContentApapter;
 
 
@@ -54,7 +54,7 @@ public class HotListFragment extends BaseFragment implements IHotListCallback, H
         mContentList.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                int size = SizeUtils.dip2px(getContext(), 8);
+                int size = SizeUtils.dip2px(getContext(), 4);
                 outRect.bottom = size;
             }
         });
@@ -62,7 +62,8 @@ public class HotListFragment extends BaseFragment implements IHotListCallback, H
         mContentApapter = new HotListContentAdapter();
         //设置适配器
         mContentList.setAdapter(mContentApapter);
-        toolTitle.setText(Objects.requireNonNull(getContext()).getString(R.string.text_hot));
+//        toolTitle.setText(Objects.requireNonNull(getContext()).getString(R.string.text_hot));
+
     }
 
     @Override

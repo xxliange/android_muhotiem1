@@ -70,7 +70,11 @@ public class HomeStarListAdapter extends RecyclerView.Adapter<HomeStarListAdapte
                     .load(dataBean.getAvatar())
                     .into(imageView);
             name.setText(dataBean.getName());
-            Glide.with(itemView.getContext()).applyDefaultRequestOptions(new RequestOptions()).load(dataBean.getSymbolpic()).into(symbol);
+            Glide.with(itemView.getContext())
+                    .applyDefaultRequestOptions(new RequestOptions())
+                    .load(dataBean.getSymbolpic())
+                    .placeholder(R.drawable.placeholder)
+                    .into(symbol);
             thumbBack.setBackgroundColor(Color.parseColor(dataBean.getTheme()));
 
 

@@ -1,12 +1,22 @@
 package com.example.muhoitem1.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +34,7 @@ import com.example.muhoitem1.model.domain.HomeData.StarListData;
 import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.presenter.Impl.HomePresenterImpl;
 import com.example.muhoitem1.ui.activity.VideoActivity.TeachVideoActivity;
+import com.example.muhoitem1.ui.activity.VideoActivity.VideoListActivity;
 import com.example.muhoitem1.ui.adapter.HomeGraduateAdapter;
 import com.example.muhoitem1.ui.adapter.HomeNewVideoAdapter;
 import com.example.muhoitem1.ui.adapter.HomePayAlbumListAdapter;
@@ -33,10 +44,12 @@ import com.example.muhoitem1.ui.adapter.HomeTeachAdapter;
 import com.example.muhoitem1.ui.adapter.LooperPagerAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
+import com.example.muhoitem1.utils.Utils;
 import com.example.muhoitem1.view.IHomeCallback;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -62,6 +75,16 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
     public RecyclerView mHomeNewVideoView;
     @BindView(R.id.home_private_view)
     public RecyclerView mHomePrivateView;
+    @BindView(R.id.home_nestedScrollView)
+    public NestedScrollView nestedScrollView;
+    @BindView(R.id.tool)
+    public Toolbar toolbar;
+//    @BindView(R.id.home_tool_bar)
+//    public TextView homeToolBar;
+    @BindView(R.id.home_container)
+    public RelativeLayout homeContainer;
+    @BindView(R.id.home_payAlbum_more)
+    public TextView payAlbumMore;
 
     private IHomePresenter mHomePresenter;
     private LooperPagerAdapter mLooperPagerAdapter;
@@ -79,7 +102,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
 
     @Override
     protected void initView(View rootView) {
-
+//        setAndroidNativeLightStatusBar();
         setBannerAdapter();
         setStarListAdapter();
         setHomeAlbumListAdapter();
@@ -87,6 +110,19 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
         setHomeGraduateAdapter();
         setHomeNewVideoAdapter();
         setHomePrivateAdapter();
+
+    }
+
+    private  void setAndroidNativeLightStatusBar() {
+//        View decorView = getActivity().getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        Window window = getActivity().getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
     }
 
     /**
@@ -172,6 +208,25 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
             }
         });
         mHomePayAlbumListAdapter.setOnHomePayAlbumListItemClickListener(this);
+        nestedScrollView.setOnScrollChangeListener((View.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+//            toolbar.scrollTo(0, Utils.px2dip(Objects.requireNonNull(getContext()),Float.valueOf(scrollY)));
+//            int oldHeight = toolbar.getHeight();
+//            int i = oldHeight - Utils.px2dip(Objects.requireNonNull(getContext()), Float.valueOf(scrollY));
+//            toolbar.setMinimumHeight(oldHeight+i);
+            if (scrollY>200) {
+//                toolbar.setVisibility(View.VISIBLE);
+//                homeToolBar.setVisibility(View.VISIBLE);
+//                homeContainer.setPadding(0,0,0,0);
+            }else{
+//                toolbar.setVisibility(View.GONE);
+//                homeToolBar.setVisibility(View.GONE);
+//                homeContainer.setPadding(0,60,0,0);
+            }
+        });
+        payAlbumMore.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), VideoListActivity.class);
+            getActivity().startActivity(intent);
+        });
     }
 
     @Override

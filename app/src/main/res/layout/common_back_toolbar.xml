@@ -28,7 +28,7 @@
                 android:background="@color/white"
                 />
             <TextView
-                android:id="@+id/tool_title"
+                android:id="@+id/tool_back_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

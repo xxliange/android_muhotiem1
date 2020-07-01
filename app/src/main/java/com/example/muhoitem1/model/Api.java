@@ -11,6 +11,7 @@ import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoRandomData;
+import com.example.muhoitem1.model.domain.VideoData.VideoListData;
 
 import java.util.List;
 
@@ -108,5 +109,18 @@ public interface Api {
     // 获取随机推荐视频列表
     @GET("webHomeSubjectByRandom")
     Observable<BaseResponse<List<TeachVideoRandomData>>> getTeachVideoRandomData();
+
+    @GET("getTeachingAlbumMroe")
+    Observable<BaseResponse<List<VideoListData>>> getVideoListAlbumData(@Query("l") int l);
+    //获取教学列表
+    @GET("getNewTeach")
+    Observable<BaseResponse<List<VideoListData>>> getVideoListNewData(@Query("l") int l);
+
+    @GET("getSubjectByType")
+    Observable<BaseResponse<List<VideoListData>>> getVideoListData(@Query("l") int l, @Query("type") int type);
+
+    //获取热点视频
+    @GET("getHomeVideoMore")
+    Observable<BaseResponse<List<VideoListData>>> getHomeVideoListData(@Query("l") int l);
 
 }

@@ -30,7 +30,7 @@ import java.util.List;
 import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, IMineLoginCallback {
-    @BindView(R.id.tool_title)
+    @BindView(R.id.tool_back_title)
     public TextView toolTitle;
     @BindView(R.id.login_btn)
     public TextView loginBtn;

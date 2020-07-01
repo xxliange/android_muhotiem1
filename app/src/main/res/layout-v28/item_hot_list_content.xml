@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:lineHeight="30dp"
+            android:lineHeight="20dp"
             android:maxLines="3"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
