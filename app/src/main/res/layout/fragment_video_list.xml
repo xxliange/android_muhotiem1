@@ -33,7 +33,8 @@
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorHeight="2dp"
             app:tabMode="scrollable"
-            android:paddingRight="10dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="10dp"
             app:tabRippleColor="@android:color/transparent"
             app:tabSelectedTextColor="@color/mainColor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
