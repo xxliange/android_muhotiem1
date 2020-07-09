@@ -16,6 +16,7 @@ import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.network.NetWorkManager;
 import com.example.muhoitem1.ui.fragment.HomeFragment;
+import com.example.muhoitem1.ui.fragment.HomeTestFragment;
 import com.example.muhoitem1.ui.fragment.HotListFragment;
 import com.example.muhoitem1.ui.fragment.MineFragment;
 import com.example.muhoitem1.utils.LogUtils;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private HotListFragment mHotListFragment;
     private MineFragment mMineFragment;
     private HomeFragment mHomeFragment;
+    private HomeTestFragment mHomeTestFragment;
     private FragmentManager mFm;
     private Unbinder mBind;
 
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         initListener();
         initCache();
         NetWorkManager.getInstance().init();
-        switchFragment(mHomeFragment);
+        switchFragment(mHomeTestFragment);
 //        switchFragment(mMineFragment);
     }
 
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mHomeFragment = new HomeFragment();
         mHotListFragment = new HotListFragment();
         mMineFragment = new MineFragment();
+        mHomeTestFragment = new HomeTestFragment();
         mFm = getSupportFragmentManager();
     }
 
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.home) {
                     LogUtils.i(this, "home");
-                    switchFragment(mHomeFragment);
+                    switchFragment(mHomeTestFragment);
                 } else if (item.getItemId() == R.id.hot) {
                     LogUtils.w(this, "hot");
                     switchFragment(mHotListFragment);

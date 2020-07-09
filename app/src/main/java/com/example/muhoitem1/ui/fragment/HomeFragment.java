@@ -46,6 +46,7 @@ import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.SizeUtils;
 import com.example.muhoitem1.utils.Utils;
 import com.example.muhoitem1.view.IHomeCallback;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.util.List;
@@ -77,8 +78,8 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
     public RecyclerView mHomePrivateView;
     @BindView(R.id.home_nestedScrollView)
     public NestedScrollView nestedScrollView;
-    @BindView(R.id.tool)
-    public Toolbar toolbar;
+//    @BindView(R.id.tool)
+//    public Toolbar toolbar;
 //    @BindView(R.id.home_tool_bar)
 //    public TextView homeToolBar;
     @BindView(R.id.home_container)
