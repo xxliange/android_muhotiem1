@@ -2,8 +2,6 @@ package com.example.muhoitem1.ui.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,14 +14,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
-import com.example.muhoitem1.ui.activity.mineActivity.LoginActivity;
 import com.example.muhoitem1.ui.activity.publicActivity.DialogActivity;
 import com.example.muhoitem1.ui.activity.testActivity.TestActivity;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
-import com.example.muhoitem1.utils.ToastUtils;
-
-import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -53,7 +47,6 @@ public class MineFragment extends BaseFragment {
     protected void initView(View rootView) {
 
         setUpState(State.SUCCESS);
-//        toolTitle.setText(Objects.requireNonNull(getContext()).getString(R.string.text_mine));
         item_mine_vipPayTitle = rootView.findViewById(R.id.item_mine_vipPay).findViewById(R.id.item_mine_common_title);
         item_mine_historyTitle = rootView.findViewById(R.id.item_mine_history).findViewById(R.id.item_mine_common_title);
         item_mine_collectTitle = rootView.findViewById(R.id.item_mine_collect).findViewById(R.id.item_mine_common_title);
@@ -66,28 +59,6 @@ public class MineFragment extends BaseFragment {
 
         getUserInfo();
 
-//        setAndroidNativeLightStatusBar();
-//        setStatusBarColor(getActivity(),R.color.mainColor);
-
-    }
-
-    private  void setAndroidNativeLightStatusBar() {
-//        View decorView = getActivity().getWindow().getDecorView();
-//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        Window window = getActivity().getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.TRANSPARENT);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-
-    }
-
-    public static void setStatusBarColor(Activity activity, int colorId) {
-        Window window = activity.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(activity.getColor(colorId));
     }
 
     private void getUserInfo() {

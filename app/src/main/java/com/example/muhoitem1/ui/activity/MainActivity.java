@@ -1,16 +1,12 @@
 package com.example.muhoitem1.ui.activity;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.base.BaseFragment;
@@ -21,6 +17,7 @@ import com.example.muhoitem1.ui.fragment.HotListFragment;
 import com.example.muhoitem1.ui.fragment.MineFragment;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
+import com.example.muhoitem1.utils.StatusBarUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
@@ -40,19 +37,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(android.R.color.white));
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         setContentView(R.layout.activity_main);
+
+        //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+        StatusBarUtils.setRootViewFitsSystemWindows(this,true);
+        //设置状态栏透明
+        StatusBarUtils.setTranslucentStatus(this);
+        //一般的手机的状态栏文字和图标都是白色的, 可如果你的应用也是纯白色的, 或导致状态栏文字看不清
+        //所以如果你是这种情况,请使用以下代码, 设置状态使用深色文字图标风格, 否则你可以选择性注释掉这个if内容
+        if (!StatusBarUtils.setStatusBarDarkTheme(this, true)) {
+            //如果不支持设置深色风格 为了兼容总不能让状态栏白白的看不清, 于是设置一个状态栏颜色为半透明,
+            //这样半透明+白=灰, 状态栏的文字能看得清
+            StatusBarUtils.setStatusBarColor(this,0x55000000);
+        }
+
         mBind = ButterKnife.bind(this);
         initFragment();
         initListener();
         initCache();
         NetWorkManager.getInstance().init();
         switchFragment(mHomeTestFragment);
-//        switchFragment(mMineFragment);
     }
 
     private void initCache() {

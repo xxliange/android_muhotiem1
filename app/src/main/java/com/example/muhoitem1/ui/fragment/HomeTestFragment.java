@@ -2,7 +2,6 @@ package com.example.muhoitem1.ui.fragment;
 
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.muhoitem1.R;
@@ -10,6 +9,7 @@ import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.VideoTagsListData;
 import com.example.muhoitem1.ui.adapter.HomeTestListPagerAdapter;
 import com.example.muhoitem1.utils.LogUtils;
+import com.example.muhoitem1.utils.StatusBarUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -19,11 +19,12 @@ import java.util.List;
 import butterknife.BindView;
 
 public class HomeTestFragment extends BaseFragment {
-    private List<String> evenList=new ArrayList<>();
+    private List<String> evenList = new ArrayList<>();
     @BindView(R.id.homeTest_tab)
     public TabLayout tabLayout;
     @BindView(R.id.homeTest_pager)
     public ViewPager2 viewPager2;
+
     @Override
     protected int getRootViewResId() {
         return R.layout.fragment_home_test;
@@ -38,9 +39,9 @@ public class HomeTestFragment extends BaseFragment {
         evenList.add("季度教学");
         evenList.add("技巧教学");
         evenList.add("研究所");
-        LogUtils.d(this, "evenList --> " + evenList );
+        LogUtils.d(this, "evenList --> " + evenList);
         super.initView(rootView);
-        new TabLayoutMediator(tabLayout, viewPager2,true, (tab, position) -> {
+        new TabLayoutMediator(tabLayout, viewPager2, false, (tab, position) -> {
             LogUtils.d(HomeTestFragment.this, "text --> " + evenList.get(position));
             tab.setText(evenList.get(position));
         }).attach();

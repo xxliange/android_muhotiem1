@@ -103,7 +103,6 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
 
     @Override
     protected void initView(View rootView) {
-//        setAndroidNativeLightStatusBar();
         setBannerAdapter();
         setStarListAdapter();
         setHomeAlbumListAdapter();
@@ -111,18 +110,6 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
         setHomeGraduateAdapter();
         setHomeNewVideoAdapter();
         setHomePrivateAdapter();
-
-    }
-
-    private  void setAndroidNativeLightStatusBar() {
-//        View decorView = getActivity().getWindow().getDecorView();
-//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        Window window = getActivity().getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.TRANSPARENT);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
     }
 
