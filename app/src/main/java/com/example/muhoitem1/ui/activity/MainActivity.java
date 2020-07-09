@@ -1,5 +1,6 @@
 package com.example.muhoitem1.ui.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
 //        StatusBarUtils.setRootViewFitsSystemWindows(this,true);
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 //            //这样半透明+白=灰, 状态栏的文字能看得清
 //            StatusBarUtils.setStatusBarColor(this,0x55000000);
 //        }
-
         mBind = ButterKnife.bind(this);
         initFragment();
         initListener();

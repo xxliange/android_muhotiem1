@@ -44,4 +44,7 @@
     <color name="colorDialogBackground">#FFFFFF</color>
     <color name="toast_background">#c8535353</color>
     <color name="colorTipBackground">#81fafafa</color>
+
+    <color name="colorBtnLeft">#895237</color>
+
 </resources>
