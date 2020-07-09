@@ -18,6 +18,7 @@ import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.ui.activity.mineActivity.LoginActivity;
 import com.example.muhoitem1.ui.activity.publicActivity.DialogActivity;
+import com.example.muhoitem1.ui.activity.testActivity.TestActivity;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
 import com.example.muhoitem1.utils.ToastUtils;
@@ -133,7 +134,7 @@ public class MineFragment extends BaseFragment {
             dialog.show();
         });
         loginBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), LoginActivity.class);
+            Intent intent = new Intent(getContext(), TestActivity.class);
             startActivity(intent);
         });
     }
