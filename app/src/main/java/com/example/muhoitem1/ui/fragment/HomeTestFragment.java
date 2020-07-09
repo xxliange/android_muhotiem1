@@ -1,6 +1,7 @@
 package com.example.muhoitem1.ui.fragment;
 
 import android.view.View;
+import android.view.Window;
 
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -32,6 +33,7 @@ public class HomeTestFragment extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
+        viewPager2.setSaveEnabled(false);
         setUpState(State.SUCCESS);
         viewPager2.setAdapter(new HomeTestListPagerAdapter(this));
         evenList.add("推荐");
