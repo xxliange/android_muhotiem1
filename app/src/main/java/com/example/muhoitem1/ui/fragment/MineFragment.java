@@ -37,7 +37,7 @@ public class MineFragment extends BaseFragment {
     @BindView(R.id.login_exitBtn)
     public LinearLayout exitBtn;
     @BindView(R.id.mine_userContainer)
-    public ConstraintLayout mine_userContainer;
+    public LinearLayout mine_userContainer;
     public TextView item_mine_vipPayTitle;
     public TextView item_mine_historyTitle;
     public TextView item_mine_collectTitle;
