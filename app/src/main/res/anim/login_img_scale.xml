@@ -10,6 +10,6 @@
     android:pivotY="50%"
     android:repeatCount="-1"
     android:repeatMode="reverse"
-    android:startOffset="2000"
+    android:startOffset="1000"
     android:toXScale="1.1"
     android:toYScale="1.1" />

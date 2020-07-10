@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.muhoitem1.R;
@@ -18,6 +20,7 @@ import com.example.muhoitem1.ui.activity.publicActivity.DialogActivity;
 import com.example.muhoitem1.ui.activity.testActivity.TestActivity;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
+import com.example.muhoitem1.utils.Utils;
 
 import butterknife.BindView;
 
@@ -33,6 +36,8 @@ public class MineFragment extends BaseFragment {
     public TextView userNick;
     @BindView(R.id.login_exitBtn)
     public LinearLayout exitBtn;
+    @BindView(R.id.mine_userContainer)
+    public ConstraintLayout mine_userContainer;
     public TextView item_mine_vipPayTitle;
     public TextView item_mine_historyTitle;
     public TextView item_mine_collectTitle;
@@ -45,7 +50,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
-
+        mine_userContainer.setPadding(0, Utils.getStatusBarHeight(getContext()),0,0);
         setUpState(State.SUCCESS);
         item_mine_vipPayTitle = rootView.findViewById(R.id.item_mine_vipPay).findViewById(R.id.item_mine_common_title);
         item_mine_historyTitle = rootView.findViewById(R.id.item_mine_history).findViewById(R.id.item_mine_common_title);
