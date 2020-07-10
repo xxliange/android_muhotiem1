@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.muhoitem1.R;
+import com.example.muhoitem1.base.BaseActivity;
 import com.example.muhoitem1.base.BaseFragment;
 import com.example.muhoitem1.model.network.NetWorkManager;
 import com.example.muhoitem1.ui.fragment.HomeFragment;
@@ -29,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.main_navigation_bar)
     public BottomNavigationView mNavigationView;
     private HotListFragment mHotListFragment;
@@ -39,33 +40,45 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager mFm;
     private Unbinder mBind;
 
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        Window window = getWindow();
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        window.setStatusBarColor(Color.TRANSPARENT);
+//        super.onCreate(savedInstanceState);
+////        requestWindowFeature(Window.FEATURE_NO_TITLE);
+////        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        setContentView(R.layout.activity_main);
+//        //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+////        StatusBarUtils.setRootViewFitsSystemWindows(this,true);
+////        //设置状态栏透明
+////        StatusBarUtils.setTranslucentStatus(this);
+////        //一般的手机的状态栏文字和图标都是白色的, 可如果你的应用也是纯白色的, 或导致状态栏文字看不清
+////        //所以如果你是这种情况,请使用以下代码, 设置状态使用深色文字图标风格, 否则你可以选择性注释掉这个if内容
+////        if (!StatusBarUtils.setStatusBarDarkTheme(this, true)) {
+////            //如果不支持设置深色风格 为了兼容总不能让状态栏白白的看不清, 于是设置一个状态栏颜色为半透明,
+////            //这样半透明+白=灰, 状态栏的文字能看得清
+////            StatusBarUtils.setStatusBarColor(this,0x55000000);
+////        }
+//        mBind = ButterKnife.bind(this);
+//        initFragment();
+//        initListener();
+//        initCache();
+//        NetWorkManager.getInstance().init();
+//        switchFragment(mHomeTestFragment);
+//    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
-        //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
-//        StatusBarUtils.setRootViewFitsSystemWindows(this,true);
-//        //设置状态栏透明
-//        StatusBarUtils.setTranslucentStatus(this);
-//        //一般的手机的状态栏文字和图标都是白色的, 可如果你的应用也是纯白色的, 或导致状态栏文字看不清
-//        //所以如果你是这种情况,请使用以下代码, 设置状态使用深色文字图标风格, 否则你可以选择性注释掉这个if内容
-//        if (!StatusBarUtils.setStatusBarDarkTheme(this, true)) {
-//            //如果不支持设置深色风格 为了兼容总不能让状态栏白白的看不清, 于是设置一个状态栏颜色为半透明,
-//            //这样半透明+白=灰, 状态栏的文字能看得清
-//            StatusBarUtils.setStatusBarColor(this,0x55000000);
-//        }
+    protected void initPresent() {
+
+    }
+
+    @Override
+    protected void initView() {
+        setTransparentStatusBar();
         mBind = ButterKnife.bind(this);
         initFragment();
         initListener();
@@ -84,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         if (mBind != null) {
             mBind.unbind();
         }
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_main;
     }
 
     private void initFragment() {

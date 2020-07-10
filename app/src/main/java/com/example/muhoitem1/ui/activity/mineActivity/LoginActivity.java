@@ -8,9 +8,11 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.muhoitem1.R;
@@ -22,6 +24,7 @@ import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
 import com.example.muhoitem1.utils.PresentManager;
 import com.example.muhoitem1.utils.ToastUtils;
+import com.example.muhoitem1.utils.Utils;
 import com.example.muhoitem1.view.IMineLoginCallback;
 
 import java.lang.reflect.Field;
@@ -38,11 +41,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public EditText user;
     @BindView(R.id.login_pass)
     public EditText pass;
+    @BindView(R.id.login_backTool)
+    public LinearLayout tool_bar;
     public ImageView back;
     private IMineLoginPresenter mMineLoginPresenter;
 
     @Override
     protected void initView() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        tool_bar.setPadding(0, Utils.getStatusBarHeight(this),0,0);
+        setTransparentStatusBar();
         back = findViewById(R.id.login_backTool).findViewById(R.id.back_toolbar);
         back.setOnClickListener(v -> {
             finish();

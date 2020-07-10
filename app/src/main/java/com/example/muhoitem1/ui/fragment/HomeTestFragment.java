@@ -19,11 +19,13 @@ import com.example.muhoitem1.model.domain.VideoTagsListData;
 import com.example.muhoitem1.ui.adapter.HomeTestListPagerAdapter;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.StatusBarUtils;
+import com.example.muhoitem1.utils.Utils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -43,7 +45,7 @@ public class HomeTestFragment extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         viewPager2.setSaveEnabled(false);
         setUpState(State.SUCCESS);
         viewPager2.setAdapter(new HomeTestListPagerAdapter(this));
@@ -59,25 +61,15 @@ public class HomeTestFragment extends BaseFragment {
 //        ViewGroup.LayoutParams layoutParams1 = tabLayout.getLayoutParams();
 //        layoutParams1.height = 200;
 //        tabLayout.setLayoutParams(layoutParams1);
-        homeTest_tabContainer.setPadding(0,getStatusBarHeight(),0,0);
+        homeTest_tabContainer.setPadding(0,Utils.getStatusBarHeight(Objects.requireNonNull(getContext())),0,0);
         LogUtils.d(this, "evenList ---> " + evenList);
         super.initView(rootView);
         new TabLayoutMediator(tabLayout, viewPager2, false, (tab, position) -> {
             LogUtils.d(HomeTestFragment.this, "text --> " + evenList.get(position));
             tab.setText(evenList.get(position));
         }).attach();
-        getStatusBarHeight();
+        Utils.getStatusBarHeight(Objects.requireNonNull(getContext()));
 
-    }
-
-    public int getStatusBarHeight() {
-        int statusBarHeight = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
-        }
-        LogUtils.d("CompatToolbar", "状态栏高度：" + pxToDp(getContext(),statusBarHeight) + "dp");
-        return statusBarHeight;
     }
 
     public int pxToDp(Context context, int px) {

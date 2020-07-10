@@ -92,6 +92,7 @@ public class TestActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setTransparentStatusBar();
         imageView.setImageResource(R.drawable.bg1);
         timerRun();
     }
