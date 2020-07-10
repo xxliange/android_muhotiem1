@@ -65,4 +65,10 @@
 
         </LinearLayout>
     </LinearLayout>
+    <ImageView
+        android:id="@+id/test_closeBtn"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_close_24" />
 </RelativeLayout>
