@@ -7,7 +7,7 @@
     <item
         android:id="@+id/hot"
         android:icon="@drawable/discover"
-        android:title="@string/text_hot" />
+        android:title="@string/text_vip" />
     <item
         android:id="@+id/mine"
         android:icon="@drawable/me"

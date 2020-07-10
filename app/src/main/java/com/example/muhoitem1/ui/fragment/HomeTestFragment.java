@@ -1,6 +1,7 @@
 package com.example.muhoitem1.ui.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.View;
