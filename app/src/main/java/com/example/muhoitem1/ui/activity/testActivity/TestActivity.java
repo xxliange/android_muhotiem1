@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -68,6 +70,8 @@ public class TestActivity extends BaseActivity {
             startActivity(intent);
         });
         test_closeBtn.setOnClickListener(v -> finish());
+        ScaleAnimation scaleAnimation = (ScaleAnimation) AnimationUtils.loadAnimation(this,R.anim.login_img_scale);
+        imageView.startAnimation(scaleAnimation);
     }
 
     private void transistionImg() {
