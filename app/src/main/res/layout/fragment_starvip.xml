@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/starVip_headerImg"
+            android:src="@drawable/ic_launcher"
+            android:layout_width="match_parent"
+            android:scaleType="fitCenter"
+            android:background="@color/black"
+            android:layout_height="140dp" />
+        <LinearLayout
+            android:id="@+id/starVip_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/starVip_tab"
+                android:layout_width="wrap_content"
+                app:tabMode="scrollable"
+                android:layout_height="128dp"
+                app:tabIndicator="@drawable/videolist_indicator"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabSelectedTextColor="@color/colorBtnLeft"
+                app:tabIndicatorColor="@color/colorBtnLeft"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/starVip_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

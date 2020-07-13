@@ -45,4 +45,5 @@ public class VideoListPagerAdapter extends FragmentPagerAdapter {
         mData.addAll(mVideoListData);
         notifyDataSetChanged();
     }
+
 }

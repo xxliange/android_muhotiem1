@@ -21,6 +21,7 @@ import com.example.muhoitem1.ui.fragment.HomeFragment;
 import com.example.muhoitem1.ui.fragment.HomeTestFragment;
 import com.example.muhoitem1.ui.fragment.HotListFragment;
 import com.example.muhoitem1.ui.fragment.MineFragment;
+import com.example.muhoitem1.ui.fragment.StarVipFragment;
 import com.example.muhoitem1.utils.LogUtils;
 import com.example.muhoitem1.utils.MuhoCache;
 import com.example.muhoitem1.utils.StatusBarUtils;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity {
     private HomeFragment mHomeFragment;
     private HomeTestFragment mHomeTestFragment;
     private FragmentManager mFm;
+    private StarVipFragment mStarVipFragment;
     private Unbinder mBind;
 
 //    @Override
@@ -84,7 +86,7 @@ public class MainActivity extends BaseActivity {
         initListener();
         initCache();
         NetWorkManager.getInstance().init();
-        switchFragment(mHomeTestFragment);
+        switchFragment(mStarVipFragment);
     }
 
     private void initCache() {
@@ -109,6 +111,7 @@ public class MainActivity extends BaseActivity {
         mHotListFragment = new HotListFragment();
         mMineFragment = new MineFragment();
         mHomeTestFragment = new HomeTestFragment();
+        mStarVipFragment = new StarVipFragment();
         mFm = getSupportFragmentManager();
     }
 
@@ -121,7 +124,7 @@ public class MainActivity extends BaseActivity {
                     switchFragment(mHomeTestFragment);
                 } else if (item.getItemId() == R.id.hot) {
                     LogUtils.w(this, "hot");
-                    switchFragment(mHotListFragment);
+                    switchFragment(mStarVipFragment);
                 } else if (item.getItemId() == R.id.mine) {
                     LogUtils.e(this, "mine");
                     switchFragment(mMineFragment);

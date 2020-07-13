@@ -35,6 +35,7 @@ import com.example.muhoitem1.presenter.IHomePresenter;
 import com.example.muhoitem1.presenter.Impl.HomePresenterImpl;
 import com.example.muhoitem1.ui.activity.VideoActivity.TeachVideoActivity;
 import com.example.muhoitem1.ui.activity.VideoActivity.VideoListActivity;
+import com.example.muhoitem1.ui.activity.publicActivity.LooperViewPager;
 import com.example.muhoitem1.ui.adapter.HomeGraduateAdapter;
 import com.example.muhoitem1.ui.adapter.HomeNewVideoAdapter;
 import com.example.muhoitem1.ui.adapter.HomePayAlbumListAdapter;
@@ -58,7 +59,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
     protected Activity mActivity;
     //获取banner控件
     @BindView(R.id.looper_pager)
-    public ViewPager looperPager;
+    public LooperViewPager looperPager;
     //获取banner指示点控件
     @BindView(R.id.looper_point_container)
     public LinearLayout looperPointContainer;
@@ -122,6 +123,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
         mLooperPagerAdapter = new LooperPagerAdapter();
         //设置适配器
         looperPager.setAdapter(mLooperPagerAdapter);
+        looperPager.setDuration(5000);
     }
 
     /**
@@ -336,5 +338,17 @@ public class HomeFragment extends BaseFragment implements IHomeCallback,HomePayA
         intent.putExtra("name",DataBean.getName());
         getActivity().startActivity(intent);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        looperPager.startLoop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        looperPager.stopLoop();
     }
 }

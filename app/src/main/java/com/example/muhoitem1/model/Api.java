@@ -12,6 +12,7 @@ import com.example.muhoitem1.model.domain.MineData.MineLoginData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoRandomData;
 import com.example.muhoitem1.model.domain.VideoData.VideoListData;
+import com.example.muhoitem1.model.domain.VipStarData.VipStarListData;
 
 import java.util.List;
 
@@ -122,5 +123,12 @@ public interface Api {
     //获取热点视频
     @GET("getHomeVideoMore")
     Observable<BaseResponse<List<VideoListData>>> getHomeVideoListData(@Query("l") int l);
+
+    /**
+     * 获取首页球星列表
+     * @return
+     */
+    @GET("getVipPlayer")
+    Observable<BaseResponse<List<VipStarListData>>> getStarVipListData();
 
 }

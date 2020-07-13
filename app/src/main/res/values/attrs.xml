@@ -10,4 +10,7 @@
     <declare-styleable name="ArcImageView">
         <attr name="arcHeight"/>
     </declare-styleable>
+    <declare-styleable name="LooperStyle">
+        <attr name="duration" format="integer" />
+    </declare-styleable>
 </resources>
