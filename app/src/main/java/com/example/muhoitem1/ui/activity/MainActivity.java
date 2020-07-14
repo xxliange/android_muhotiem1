@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity {
         initListener();
         initCache();
         NetWorkManager.getInstance().init();
-        switchFragment(mStarVipFragment);
+        switchFragment(mHomeTestFragment);
     }
 
     private void initCache() {

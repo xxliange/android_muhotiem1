@@ -9,6 +9,8 @@ import com.example.muhoitem1.model.domain.HomeData.HomeTeachData;
 import com.example.muhoitem1.model.domain.HomeData.StarListData;
 import com.example.muhoitem1.model.domain.HotData.HotListData;
 import com.example.muhoitem1.model.domain.MineData.MineLoginData;
+import com.example.muhoitem1.model.domain.VideoData.AlbumInfoCachData;
+import com.example.muhoitem1.model.domain.VideoData.AlbumInfoListData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoData;
 import com.example.muhoitem1.model.domain.VideoData.TeachVideoRandomData;
 import com.example.muhoitem1.model.domain.VideoData.VideoListData;
@@ -130,5 +132,21 @@ public interface Api {
      */
     @GET("getVipPlayer")
     Observable<BaseResponse<List<VipStarListData>>> getStarVipListData();
+
+    /**
+     * 获取专辑教练信息
+     * @param id
+     * @return
+     */
+    @GET("getTeachingAlbumIntro")
+    Observable<BaseResponse<AlbumInfoCachData>> getAlbumInfoCachData(@Query("id") int id);
+
+    /**
+     * 获取专辑列表数据
+     * @param sid
+     * @return
+     */
+    @GET("getTeachingAlbumDetail")
+    Observable<BaseResponse<List<AlbumInfoListData>>> getAlbumInfoListData(@Query("sid") int sid);
 
 }
