@@ -14,11 +14,16 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="@color/black">
-            <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+            <com.example.muhoitem1.ui.activity.VideoActivity.MyVideoActivity
                 android:id="@+id/thumb_info_list_player"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:layout_constraintLeft_toLeftOf="parent" />
+<!--            <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer-->
+<!--                android:id="@+id/thumb_info_list_player"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent" />-->
         </LinearLayout>
         <LinearLayout
             android:id="@+id/album_info_list_container"

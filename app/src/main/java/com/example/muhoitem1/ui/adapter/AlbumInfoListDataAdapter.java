@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.muhoitem1.R;
 import com.example.muhoitem1.model.domain.VideoData.AlbumInfoListData;
+import com.example.muhoitem1.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,9 @@ public class AlbumInfoListDataAdapter extends RecyclerView.Adapter<AlbumInfoList
     public void onBindViewHolder(@NonNull InnerHolder holder, int position) {
         AlbumInfoListData albumInfoListData = mData.get(position);
         holder.setData(albumInfoListData);
+        holder.itemView.setOnClickListener(v -> {
+            onItemClickListener.onItemClick(mData.get(position));
+        });
     }
 
     @Override
@@ -47,6 +51,10 @@ public class AlbumInfoListDataAdapter extends RecyclerView.Adapter<AlbumInfoList
         notifyDataSetChanged();
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public class InnerHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_album_info_list_data_name)
         public TextView title;
@@ -59,4 +67,10 @@ public class AlbumInfoListDataAdapter extends RecyclerView.Adapter<AlbumInfoList
             title.setText(albumInfoListData.getTitle());
         }
     }
+
+    public interface OnItemClickListener{
+        void onItemClick(AlbumInfoListData data);
+    }
+
+    private OnItemClickListener onItemClickListener;
 }
